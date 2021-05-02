@@ -1,11 +1,11 @@
-import SideNav from './components/SideNav'
+import SidebarComponent from './components/SidebarComponent'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <SideNav/>
+        <SidebarComponent/>
       </header>
     </div>
   );
