@@ -1,5 +1,5 @@
 import React from 'react';
-import { bool, func, string } from 'prop-types';
+import { bool,  string } from 'prop-types';
 import { Row } from 'simple-flexbox';
 import { StyleSheet, css } from 'aphrodite';
 
@@ -48,7 +48,6 @@ function MenuItemComponent(props) {
 
 MenuItemComponent.propTypes = {
     active: bool,
-    icon: func,
     title: string
 };
 

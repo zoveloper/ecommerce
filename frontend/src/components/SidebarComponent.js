@@ -10,13 +10,13 @@ const styles = StyleSheet.create({
         cursor: 'pointer',
         position: 'absolute',
         left: 24,
-        top: 34
+        top: 34,
     },
     container: {
         backgroundColor: '#363740',
         width: 255,
         paddingTop: 32,
-        height: 'calc(100% - 32px)'
+        height: 700 ,
     },
     containerMobile: {
         transition: 'left 0.5s, right 0.5s',
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         minWidth: '100%',
         height: '100%',
         backgroundColor: 'rgba(0,0,0,.50)',
-        zIndex: 900
+        zIndex: 900,
     },
     separator: {
         borderTop: '1px solid #DFE0EB',
@@ -76,7 +76,7 @@ class SidebarComponent extends React.Component {
 
     renderBurger = () => {
         return <div onClick={this.toggleMenu} className={css(styles.burgerIcon)}>
-            <Hamburger />
+            <Hamburger/>
         </div>
     }
 
