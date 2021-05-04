@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#363740',
         width: 255,
         paddingTop: 32,
-        height: 700 ,
+        height: 'calc(100% - 32px)' ,
     },
     containerMobile: {
         transition: 'left 0.5s, right 0.5s',
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 });
 
 class SidebarComponent extends React.Component {
-
+    
     state = { expanded: false };
 
     onItemClicked = (item) => {
@@ -70,8 +70,7 @@ class SidebarComponent extends React.Component {
         return this.props.onChange(item);
     }
 
-    isMobile = () => window.innerWidth <= 768;
-
+    
     toggleMenu = () => this.setState(prevState => ({ expanded: !prevState.expanded }));
 
     renderBurger = () => {
@@ -81,8 +80,11 @@ class SidebarComponent extends React.Component {
     }
 
     render() {
+        
         const { expanded } = this.state;
-        const isMobile = this.isMobile();
+        const isMobile = window.innerWidth <= 767;
+        console.log(isMobile)
+        console.log(expanded)
         return (
             <div style={{ position: 'relative' }}>
                 <Row className={css(styles.mainContainer)} breakpoints={{ 768: css(styles.mainContainerMobile) }}>
@@ -91,23 +93,23 @@ class SidebarComponent extends React.Component {
                         <LogoComponent />
                         <Column className={css(styles.menuItemList)}>
                             <MenuItemComponent
-                                title="WORK" 
+                                title='WORK' 
                                 onClick={() => this.onItemClicked('WORK')}
                                 active={this.props.selectedItem === 'WORK'}
                             />
                             <MenuItemComponent
-                                title="SHOP" 
+                                title='SHOP' 
                                 onClick={() => this.onItemClicked('SHOP')}
                                 active={this.props.selectedItem === 'SHOP'}
                             />
                             <MenuItemComponent
-                                title="ABOUT" 
+                                title='ABOUT' 
                                 onClick={() => this.onItemClicked('ABOUT')}
                                 active={this.props.selectedItem === 'ABOUT'} />
                             <div className={css(styles.separator)}></div>
                         </Column>
                     </Column>
-                    {isMobile && expanded && <div className={css(styles.outsideLayer)} onClick={this.toggleMenu}></div>}
+            
                 </Row>
             </div>
         );
