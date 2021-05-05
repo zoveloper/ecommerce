@@ -8,10 +8,12 @@ body{
   margin: 0;
   padding:0;
 }
+
+
 .Sidebar{
   height: 100%;
   width: 200px ;
-  background-color: rgb(168, 90, 168);
+  background-color: rgb(13, 35, 83);
 }
 .SidebarList{
   height: auto;
@@ -49,4 +51,23 @@ body{
 
 .SidebarList #active{
   background-color: yellow;
+}
+.Hamburger{
+  display: none;
+}
+
+@media screen and (max-width : 800px) {
+  .Sidebar{
+    display: none;
+    
+  }
+  .SidebarActive  {
+    height: 100%;
+    width: 200px ;
+    background-color: rgb(168, 90, 168);
+  }
+  .Hamburger{
+    display: block;
+  }
+
 }
