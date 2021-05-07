@@ -1,23 +1,15 @@
-import React ,{useState} from 'react';
-import Sidebar from './components/Sidebar'
-import './App.css';
-import { Cross as Hamburger } from 'hamburger-react'
+import React from 'react';
+import * as s from './App.styles';
+
 
 
 function App() {
-  const [isOpen, setOpen] = useState(false)
+
 
   return(
-    <div className="App">
-      <div className="Hamburger">
-      <Hamburger
-      toggle={setOpen}
-      toggled={isOpen}
-      />
-      </div>
-      <Sidebar show={isOpen} />
-      
-    </div>
+    <s.App>
+   <s.Header>Sidebar</s.Header>
+    </s.App>
   );
 }
 
