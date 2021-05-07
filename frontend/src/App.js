@@ -1,14 +1,17 @@
 import React from 'react';
 import * as s from './App.styles';
 
-
+// components
+import Sidebar from './components/Sidebar/Sidebar'
+import MainView from './components/MainView/MainView'
 
 function App() {
 
 
-  return(
+  return( 
     <s.App>
-   <s.Header>Sidebar</s.Header>
+      <Sidebar/>
+      <MainView/>
     </s.App>
   );
 }
