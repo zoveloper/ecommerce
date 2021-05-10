@@ -5,12 +5,18 @@ import * as s from './App.styles';
 import Sidebar from './components/Sidebar/Sidebar'
 import MainView from './components/MainView/MainView'
 
-function App() {
+const App =() =>{
 
-
+  const backgroundImage = 'images/coffee.jpg';
+  const SidevarHeader = "kimanaroom";
+  const menuItems = ['Home', 'Shop', 'About'];
   return( 
     <s.App>
-      <Sidebar/>
+      <Sidebar 
+        backgroundImage ={backgroundImage}
+        SidevarHeader = {SidevarHeader}
+        menuItems = {menuItems}
+      />
       <MainView/>
     </s.App>
   );
