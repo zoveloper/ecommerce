@@ -16,19 +16,31 @@ export const SidebarContainer = styled.div`
 `
 
 export const SidebarHeader = styled.h3`
-    padding: 20px, 0;
+    padding: 20px 0;
     text-align: center;
     margin-bottom: 10px;
     letter-spacing: 6px;
 `
-export const MenuItemsContainer =styled.div`
+export const MenuItemContainer =styled.div`
 
 
 `;
 export const MenuItem =styled.div`
     text-align:center;
-    padding:  6px 20px;
+    padding: 6px 10px;
     font-weight:600;
-    color: rgba(19 , 15 ,64)
+    color: rgba(19 , 15 ,64);
+
+    &:after { 
+        content:'';
+        border: 1px solid rgba(225, 112, 85);
+        display: block;
+        margin: 8px 0 4px;
+    }
 
 `;
+
+export const Text =styled.p`
+    display: inline
+
+`

@@ -9,7 +9,12 @@ const App =() =>{
 
   const backgroundImage = 'images/coffee.jpg';
   const SidevarHeader = "kimanaroom";
-  const menuItems = ['Home', 'Shop', 'About'];
+  const menuItems = [
+    {name: 'Home', to: '/', icon:''},
+    {name: 'Shop', to: '/Shop', icon:''},
+    {name: 'About', to: '/About', icon:''},
+  ];
+
   return( 
     <s.App>
       <Sidebar 

@@ -9,7 +9,12 @@ const Sidebar = props =>{
     } = props;
     
     const menuItemsJSX = menuItems.map((item, index) =>{
-        return(<s.MenuItem key={index}>{item}</s.MenuItem>
+        return(
+        <s.MenuItem key={index}>
+            <s.Text>
+                {item.name}
+            </s.Text>
+        </s.MenuItem>
         )
     })
 
@@ -17,7 +22,7 @@ const Sidebar = props =>{
     return(
     <s.SidebarContainer backgroundImage={ backgroundImage }>
     <s.SidebarHeader>{SidevarHeader}</s.SidebarHeader>
-    <s.MenuItemsContainer>{menuItemsJSX}</s.MenuItemsContainer>
+    <s.MenuItemContainer>{menuItemsJSX}</s.MenuItemContainer>
     </s.SidebarContainer>
     )
 }
