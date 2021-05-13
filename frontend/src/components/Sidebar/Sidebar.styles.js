@@ -1,20 +1,12 @@
 import styled from '@emotion/styled'
 
 export const SidebarContainer = styled.div`
-    width: 20%;
-    max-Width: 280px;
-    min-Width: 80px;
+    width: ${p=> p.isSidebarOpen ? '35%' : '0%'};
     color: blue;
-    background-image: linear-gradient(
-        315deg, 
-        rgba(255,255,255,0.1) 0%,
-        #eec0c6 74%),
-        url(${p => p.backgroundImage});
-    background-size:cover ;
-    background-repeat: no repeat;
-    background-position:center center;
-
+    background: yellow;
+    
     position: relative; // Toggler
+    transition: .3s ease-in all
 `
 
 export const SidebarHeader = styled.h3`
@@ -28,6 +20,9 @@ export const MenuItemContainer =styled.div`
 
 `;
 export const MenuItem =styled.div`
+    ${p => !p.isSidebarOpen &&`
+    text-align:center;
+    `}
     text-align:center;
     padding: 6px 10px;
     font-weight:600;
@@ -40,7 +35,7 @@ export const MenuItem =styled.div`
     &:after { 
         content:'';
         border: 1px solid ${p => p.selected ? ' rgba(225, 225, 225)' : ' rgba(225, 112, 85)'};
-        display: block;
+        ${p => p.isSidebarOpen ? ('display: block') :  ('display: none')};
         margin: 8px 0 4px;
     };
 
@@ -57,37 +52,18 @@ export const MenuItem =styled.div`
 `;
 
 export const Text =styled.p`
-    display: inline
+    display: ${p => p.isSidebarOpen ? 'inline': 'none'}
 
 `
 //Toggler ------------------------
 
 export const TogglerContainer = styled.div`
+    display: ${p => !p.isMobile ? 'block':'none'};
     position: absolute;
     width: 30%;
     bottom:10%;
     left: 0;
     right: 0;
     margin: 0 auto;
-
-`
-export const Toggler = styled.div`
-    height: 40px;
-    cursor: pointer;
-    position: relative;
-
-    &:after { 
-        content:'';
-        position: absolute;
-        left: 0;
-        top: .25em;
-        width: 100%;
-        height: .1em;
-        background: #fff;
-        box-shadow:
-        0 .75em 0 0 #fff,
-        0 1.5em 0 0 #fff;
-    };
-    
 
 `
