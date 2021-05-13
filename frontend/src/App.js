@@ -7,7 +7,6 @@ import MainView from './components/MainView/MainView'
 
 const App =() =>{
 
-  const backgroundImage = 'images/coffee.jpg';
   const sidebarHeader = {
     fullName:'kimanaroom',
     shortName: 'kim'
@@ -22,7 +21,6 @@ const App =() =>{
   return( 
     <s.App>
       <Sidebar 
-        backgroundImage ={backgroundImage}
         sidebarHeader = {sidebarHeader}
         menuItems = {menuItems}
       />

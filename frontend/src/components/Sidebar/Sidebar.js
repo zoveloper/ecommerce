@@ -4,7 +4,6 @@ import * as s from './Sidebar.styles'
 
 const Sidebar = props =>{
     const { 
-        backgroundImage='',
         sidebarHeader={
             fullName:'',
             shortName:' '
@@ -51,7 +50,7 @@ const Sidebar = props =>{
         
         //console.log(item.name)
         //console.log(selected)
-        console.log(isOpen)
+        console.log(isSidebarOpen)
 
         return(
         
@@ -67,25 +66,28 @@ const Sidebar = props =>{
     });
     
     return(
- 
+    <s.MainContainer>
     <s.SidebarContainer 
-        backgroundImage={ backgroundImage } 
         isSidebarOpen ={isSidebarOpen}
         isMobile={isMobile} 
         
     >
         <s.SidebarHeader>{sidebarHeader.fullName}</s.SidebarHeader>
         <s.MenuItemContainer>{menuItemsJSX}</s.MenuItemContainer>
-        <s.TogglerContainer
+        
+        
+    </s.SidebarContainer>
+    <s.TogglerContainer
         isMobile={isMobile} 
         onClick= {()=>(setSidebarState(!isSidebarOpen))}
         >
-            <Hamburger 
+        <Hamburger 
         toggled={isOpen} 
         toggle={setOpen} />
         </s.TogglerContainer>
-        
-    </s.SidebarContainer>
+    
+    </s.MainContainer>
+    
     )
 }
 
