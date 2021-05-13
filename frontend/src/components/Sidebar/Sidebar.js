@@ -41,19 +41,14 @@ const Sidebar = props =>{
     window.addEventListener('resize',updateWindowWidth)
     })
 
-            
-        
 
 
     const menuItemsJSX = menuItems.map((item, index) =>{
         const isItemSelected = selected === item.name;
-        
         //console.log(item.name)
         //console.log(selected)
         console.log(isSidebarOpen)
-
         return(
-        
         <s.MenuItem 
         key={index}
         selected={isItemSelected}
@@ -66,27 +61,39 @@ const Sidebar = props =>{
     });
     
     return(
-    <s.MainContainer>
-    <s.SidebarContainer 
-        isSidebarOpen ={isSidebarOpen}
-        isMobile={isMobile} 
-        
-    >
-        <s.SidebarHeader>{sidebarHeader.fullName}</s.SidebarHeader>
-        <s.MenuItemContainer>{menuItemsJSX}</s.MenuItemContainer>
-        
-        
-    </s.SidebarContainer>
-    <s.TogglerContainer
-        isMobile={isMobile} 
+    <s.Wrapper>
+        {!isMobile ? (<s.MobileContainer isOpen={isOpen}>
+            <s.MobileSidebarHeader>
+                {sidebarHeader.fullName}
+            </s.MobileSidebarHeader>
+        <s.MobileMenuItemContainer>
+            {menuItemsJSX}
+            </s.MobileMenuItemContainer>
+        <s.TogglerContainer
         onClick= {()=>(setSidebarState(!isSidebarOpen))}
         >
         <Hamburger 
         toggled={isOpen} 
         toggle={setOpen} />
         </s.TogglerContainer>
+        </s.MobileContainer>) :(
+        <s.SidebarContainer 
+        isSidebarOpen ={isSidebarOpen}
+        isMobile={isMobile} 
+        isOpen={isOpen}
+    >  
+        <s.SidebarHeader>
+            {sidebarHeader.fullName}
+            </s.SidebarHeader>
+        <s.MenuItemContainer>
+            {menuItemsJSX}
+            </s.MenuItemContainer>
+        
+    </s.SidebarContainer>
+    )}
     
-    </s.MainContainer>
+    </s.Wrapper>
+    
     
     )
 }

@@ -3,7 +3,7 @@ import * as s from './App.styles';
 
 // components
 import Sidebar from './components/Sidebar/Sidebar'
-import MainView from './components/MainView/MainView'
+
 
 const App =() =>{
 
@@ -24,7 +24,6 @@ const App =() =>{
         sidebarHeader = {sidebarHeader}
         menuItems = {menuItems}
       />
-      <MainView/>
     </s.App>
   );
 }
