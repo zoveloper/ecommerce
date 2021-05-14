@@ -7,14 +7,14 @@ export const Wrapper = styled.div`
 `
 //for web
 export const SidebarContainer = styled.div`
-    
+    width: 30%;
     background: red;
     flex-direction:column;
     height: 100vh;
     color: blue;
     
     position: relative; // Toggler
-    transition: .3s ease-in all
+    transition: 0.3s;
 
     @media only screen and (max-width: 700px) {
         position: fixed;
@@ -32,9 +32,7 @@ export const MenuItemContainer =styled.div`
 
 `;
 export const MenuItem =styled.div`
-    ${p => !p.isMobile &&`
     text-align:center;
-    `}
     padding: 6px 10px;
     font-weight:600;
     color: ${p => p.selected ? ' rgba(225, 225, 225)' : ' rgba(19, 15, 64)'};
@@ -67,16 +65,19 @@ export const Text =styled.p`
     display: ${p => p.isSidebarOpen ? 'inline': 'none'}
 
 `
-// mobile
+// Mobile -----------
 export const MobileContainer = styled.div`
-${p => p.isOpen ? ('width: 100%'):('width: 0%')};
-display: flex;
-flex-direction: column;
-background: pink;
-height: 100vh;
+    ${p => p.isOpen ? ('width: 100vw'):('width: 0%')};
+    display: flex;
+    flex-direction: column;
+    background: pink;
+    height: 100vh;
+    transition: 0.3s;
+    opacity: 0.7;
 `
 export const MobileSidebarHeader = styled.div`
-padding: 20px 0;
+    ${p => p.isSidebarOpen ? ('display: block') :  ('display: none')};
+    padding: 20px 0;
     text-align: center;
     margin-bottom: 10px;
     letter-spacing: 6px;
@@ -92,7 +93,7 @@ ${p => !p.isMobile &&`
     
     &:hover{
         color:rgba(225, 225, 225);
-        transition: .3s ease-in all;
+        transition: .2s ease-in all;
     }
 
     &:after { 
@@ -107,10 +108,8 @@ ${p => !p.isMobile &&`
 export const TogglerContainer = styled.div`
     display: ${p => !p.isMobile ? 'block':'none'};
     position: absolute;
-    width: 30%;
-    bottom:10%;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+    top: 1%;
+    left: 85%;
+    
 
 `

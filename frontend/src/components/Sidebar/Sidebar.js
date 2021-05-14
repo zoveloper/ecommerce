@@ -34,7 +34,7 @@ const Sidebar = props =>{
     
     useEffect(()=>{
     const updateWindowWidth =()=>{
-        if(window.innerWidth > 600) setisMobile(true)
+        if(window.innerWidth > 700) setisMobile(true)
         else setisMobile(false)
         
     }
@@ -62,10 +62,15 @@ const Sidebar = props =>{
     
     return(
     <s.Wrapper>
-        {!isMobile ? (<s.MobileContainer isOpen={isOpen}>
-            <s.MobileSidebarHeader>
+        {!isMobile ? (
+        <s.MobileContainer 
+        isOpen={isOpen}
+        >
+            <s.MobileSidebarHeader 
+            isSidebarOpen ={isSidebarOpen}
+            >
                 {sidebarHeader.fullName}
-            </s.MobileSidebarHeader>
+            </s.MobileSidebarHeader >
         <s.MobileMenuItemContainer>
             {menuItemsJSX}
             </s.MobileMenuItemContainer>
@@ -74,14 +79,14 @@ const Sidebar = props =>{
         >
         <Hamburger 
         toggled={isOpen} 
-        toggle={setOpen} />
+        toggle={setOpen} rounded/>
         </s.TogglerContainer>
         </s.MobileContainer>) :(
         <s.SidebarContainer 
         isSidebarOpen ={isSidebarOpen}
         isMobile={isMobile} 
         isOpen={isOpen}
-    >  
+        >  
         <s.SidebarHeader>
             {sidebarHeader.fullName}
             </s.SidebarHeader>
