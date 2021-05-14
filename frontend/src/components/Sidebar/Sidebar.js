@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { Cross as Hamburger } from 'hamburger-react'
+import { Link } from 'react-router-dom'
 import * as s from './Sidebar.styles'
 
 const Sidebar = props =>{
@@ -49,6 +50,7 @@ const Sidebar = props =>{
         //console.log(selected)
         console.log(isSidebarOpen)
         return(
+        <Link to={item.to}>
         <s.MenuItem 
         key={index}
         selected={isItemSelected}
@@ -57,6 +59,7 @@ const Sidebar = props =>{
         >
             <s.Text isSidebarOpen={isSidebarOpen}>{item.name} </s.Text>
         </s.MenuItem>
+        </Link>
         )
     });
     
