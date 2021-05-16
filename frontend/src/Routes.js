@@ -5,6 +5,7 @@ import {Switch, Route} from 'react-router-dom'
 import Work from './components/MainView/Work/Work'
 import Shop from './components/MainView/Shop/Shop'
 import About from './components/MainView/About/About'
+
 const Routes = () =>{
     return(
         <Switch>
