@@ -2,14 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useMenuContext } from "../../state";
-import { useTheme } from "../../hooks";
-import Icon from "../Icon";
 
 export const links = ["home", "about", "contact"];
 
 const DesktopNavLinks = () => {
   const { closeMenu } = useMenuContext();
-  const [theme, toggleTheme] = useTheme();
 
   return (
     <NavLinksWrapper className="nav-links">
@@ -20,11 +17,6 @@ const DesktopNavLinks = () => {
           </NavLink>
         </li>
       ))}
-      <li>
-        <button onClick={toggleTheme}>
-          <Icon name={theme === "dark" ? "day" : "night"} />
-        </button>
-      </li>
     </NavLinksWrapper>
   );
 };
@@ -32,17 +24,18 @@ const DesktopNavLinks = () => {
 export default DesktopNavLinks;
 
 const NavLinksWrapper = styled.ul`
-  flex: 1;
+
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   list-style: none;
-  li:not(:last-child) {
-    margin-right: 26px;
+  margin: 30px;
+  li{
+    margin-top:20px;
   }
-  li:last-child {
-    margin-left: auto;
-  }
+  
+
   button {
     background: transparent;
     outline: none;
@@ -52,6 +45,7 @@ const NavLinksWrapper = styled.ul`
   @media screen and (max-width: 768px) {
     flex-direction: column;
     li {
+      font: red;
       padding: 12px;
       margin: 0 !important;
     }
@@ -60,6 +54,7 @@ const NavLinksWrapper = styled.ul`
 
 export const NavLink = styled(Link)`
   position: relative;
+  margin-top: 30px;
   color: white;
   text-decoration: none;
   text-transform: capitalize;

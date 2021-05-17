@@ -41,8 +41,6 @@ const App = () => {
         <MenuProvider>
           <Navbar />
         </MenuProvider>
-        <div style={{ height: "100vh" }}>Blabla</div>
-        <div style={{ height: "100vh" }}>Blabla</div>
         <Route exact path="/about" component={About} />
       </div>
     </Router>

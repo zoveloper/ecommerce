@@ -4,6 +4,7 @@ import { useMenuContext } from "../../state";
 import { useScrollFreeze } from "../../hooks";
 import NavLinks from "./NavLinks";
 
+
 const MobileNavbar = () => {
   const { isMenuOpen } = useMenuContext();
   useScrollFreeze(isMenuOpen);
@@ -22,11 +23,12 @@ const MobileNavbar = () => {
   });
   return (
     <>
-      {isMenuOpen && isMobile && (
+      { isMenuOpen &&isMobile && (
         <MobileNav>
           <NavLinks />
         </MobileNav>
       )}
+       
     </>
   );
 };
@@ -39,8 +41,10 @@ const MobileNav = styled.nav`
   left: 0;
   height: 100%;
   width: 100%;
-  background: var(--bg);
+  background: pink;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  
 `;
