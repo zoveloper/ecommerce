@@ -28,9 +28,12 @@ const Nav = styled.div`
     z-index: 99;
     & > div > div {
       background: var(--text) !important;
+      
     }
     @media screen and (max-width: 768px) {
       display: flex;
+      position: fixed;
+
     }
   }
 `;

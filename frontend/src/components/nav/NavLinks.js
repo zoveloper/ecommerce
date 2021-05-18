@@ -24,7 +24,6 @@ const DesktopNavLinks = () => {
 export default DesktopNavLinks;
 
 const NavLinksWrapper = styled.ul`
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,7 +34,6 @@ const NavLinksWrapper = styled.ul`
     margin-top:20px;
   }
   
-
   button {
     background: transparent;
     outline: none;

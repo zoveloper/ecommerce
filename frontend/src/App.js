@@ -5,6 +5,8 @@ import reset from "styled-reset";
 import { MenuProvider } from "./state";
 import Navbar from "./components/nav";
 import About from "./About";
+import HomeScreen from "./screens/HomeScreen";
+
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
@@ -41,6 +43,8 @@ const App = () => {
         <MenuProvider>
           <Navbar />
         </MenuProvider>
+        <HomeScreen/>
+
         <Route exact path="/about" component={About} />
       </div>
     </Router>
