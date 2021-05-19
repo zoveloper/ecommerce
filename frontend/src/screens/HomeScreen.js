@@ -21,7 +21,7 @@ function HomeScreen() {
         
         </div>
     )
-}
+};
 
 
 export default HomeScreen

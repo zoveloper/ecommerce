@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.8.3",
     "@trendmicro/react-sidenav": "^0.5.0",
     "aphrodite": "^2.4.0",
+    "bootstrap": "^4.6.0",
     "framer-motion": "^4.1.16",
     "hamburger-react": "^2.4.0",
     "node-sass": "^5.0.0",
