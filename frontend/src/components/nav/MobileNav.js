@@ -36,15 +36,16 @@ const MobileNavbar = () => {
 export default MobileNavbar;
 
 const MobileNav = styled.nav`
-  position: fixed;
+  position: ablsolute;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vh;
   background: pink;
   display: flex;
   justify-content: center;
   align-items: center;
+  zIndex: 999;
 
   
 `;

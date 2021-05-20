@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
+import './Global.scss'
 import reset from "styled-reset";
 import { MenuProvider } from "./state";
 import Navbar from "./components/nav";
@@ -36,17 +37,16 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const App = () => {
+  
   return (
     <Router>
-      <div className="App">
+      <div className="app">
         <GlobalStyle />
         <MenuProvider>
           <Navbar />
         </MenuProvider>
-        <Route exact path="/about" component={About} />
-      </div>
-      <div>
         <HomeScreen/>
+        <Route exact path="/about" component={About} />
       </div>
     </Router>
   );

@@ -38,7 +38,7 @@ const DesktopNav = styled.nav`
       background: var(--headerBg);
       box-shadow: var(--headerBoxShadow);
     `}
-  position: fixed;
+  position: static;
   top: 0;
   left: 0;
   width: 240px;
