@@ -43,9 +43,10 @@ const App = () => {
         <MenuProvider>
           <Navbar />
         </MenuProvider>
-        <HomeScreen/>
-
         <Route exact path="/about" component={About} />
+      </div>
+      <div>
+        <HomeScreen/>
       </div>
     </Router>
   );
