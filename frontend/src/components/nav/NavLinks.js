@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useMenuContext } from "../../state";
 
-export const links = ["home", "about", "contact"];
+export const links = ["Shop", "work ","about"];
 
 const DesktopNavLinks = () => {
   const { closeMenu } = useMenuContext();

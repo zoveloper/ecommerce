@@ -7,6 +7,7 @@ import { MenuProvider } from "./state";
 import Navbar from "./components/nav";
 import About from "./About";
 import HomeScreen from "./screens/HomeScreen";
+import ProductScreen from "./screens/ProductScreen";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -45,8 +46,10 @@ const App = () => {
         <MenuProvider>
           <Navbar />
         </MenuProvider>
-        <HomeScreen/>
+  
+        <Route exact path="/shop" component={HomeScreen} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/product/:id" component={ProductScreen} />
       </div>
     </Router>
   );
