@@ -26,6 +26,7 @@ export default DesktopNavLinks;
 const NavLinksWrapper = styled.ul`
   display: flex;
   flex-direction: column;
+  position: fixed;
   justify-content: center;
   align-items: center;
   list-style: none;

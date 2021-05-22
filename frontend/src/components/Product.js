@@ -39,7 +39,8 @@ const Productpost = styled.div`
         @media screen and (min-width: 768px) {  
         
         ${Productpost}:hover & {
-        display: block;
+        display: flex;
+        justifyContent: center;
         text-align: center;
         color:white;
 
@@ -47,6 +48,8 @@ const Productpost = styled.div`
         background-color: rgb(255, 181, 77);
         height: 100%;
         width: 100%;
+        font-size: .5em;
+       
         }}
         
     `
