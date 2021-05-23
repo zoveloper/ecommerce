@@ -15,7 +15,6 @@ function HomeScreen() {
                     <Col key={product._id} sm={6} md={5} lg= {4} xl={3}>
                         <Product product={product}/>
                     </Col>
-
                 ))}
             </Row>
             </div>
