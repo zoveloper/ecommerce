@@ -14,7 +14,6 @@ function ProductScreen({match}) {
             setProduct(data)
         }
         fetchProduct()
-
     })
     return (
         <ProudctDetail>
