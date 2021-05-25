@@ -15,7 +15,7 @@ function ProductScreen({match}) {
         }
         fetchProduct()
 
-    }, [match])
+    })
     return (
         <ProudctDetail>
             {product.name}
