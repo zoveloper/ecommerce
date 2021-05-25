@@ -31,6 +31,10 @@ display: block;
 position: static;
 width: 200px;
 height: 100vh;
+@media screen and (max-width: 768px) {
+  justify-content: space-between;
+  padding: 0 30px;
+  display: none;
 
 `
 const DesktopNav = styled.div`
