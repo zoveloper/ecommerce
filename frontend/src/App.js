@@ -34,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
   
   a {
     text-decoration: none;
+    display: flex;
   }
 `;
 

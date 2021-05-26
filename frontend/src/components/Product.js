@@ -4,23 +4,26 @@ import styled from "styled-components";
 
 function Product({product}) {
     return (
-        <>
+        
+        <div>
         <Productpost>
             <Link to = {`/product/${product._id}`}>
                 <Thumbnail src={product.image} />
             </Link>
             <Overlay>
                 <Link to = {`/product/${product._id}`}>
-                    <ProductName>{product.name}
-                    ${[product.price]}</ProductName>
+                    <ProductName>
+                        <div>{product.name}</div>
+                        <div>${[product.price]}</div>
+                    </ProductName>
                 </Link>
             </Overlay>  
         </Productpost>
-        <MobileMode>
-            <div>{product.name}</div>
-            <div>${[product.price]}</div>
+            <MobileMode>
+                <div>{product.name}</div>
+                <div>${[product.price]}</div>
             </MobileMode>
-        </>
+        </div>
     )
 };
 
@@ -29,9 +32,10 @@ const Productpost = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3em;
+    font-size: 3.5em;
     font-style: normal;
-    color: blue;
+    width: 200px;
+    height: 270px;
     
     &:hover {
         transform: scale(1.0);}
@@ -47,8 +51,9 @@ const Productpost = styled.div`
         ${Productpost}:hover & {
         
         display: flex;
+        
         justify-content: center; 
-        align-items: center;
+        align-items: center;   
         opacity: 0.95;
 
         transition: background-color 500ms ease-in 1s;
@@ -61,14 +66,13 @@ const Productpost = styled.div`
         
     `
     const ProductName = styled.div`
-    color: green;
-
+        color: green;
     `
     const MobileMode = styled.div`
     display: none;
     color: red;
     @media screen and (max-width: 768px) {  
-        display: flex;
+        display: block;
         flex-direction: column;
         color: red;
         padding: 0 5% 5% 5%;
@@ -77,6 +81,6 @@ const Productpost = styled.div`
     const Thumbnail = styled.img`
     
     object-fit: cover;
-    width: 100%;
-    height: 100%;
+    width: 200px;
+    height: 270px;
     `

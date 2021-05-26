@@ -1,16 +1,17 @@
 import React,{useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
-import { Row,Col } from 'react-bootstrap'
+
 import Product from '../components/Product'
 import {listProducts} from '../actions/productActions'
 import '../Global.scss'
-
+import Grid from '@material-ui/core/Grid';
 
 
 function HomeScreen({map}) {
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)
     const {error,loading, products} = productList
+    
 
     useEffect(() => {
         dispatch(listProducts())
@@ -20,19 +21,19 @@ function HomeScreen({map}) {
     return (
         <div>
             <h1>Latest Products</h1>
-            {loading ? <h2>dddd</h2>
+            {loading ? <h2>loading....</h2>
                 : error ? <h3>{error}</h3>
                 :
-                <div>
-                <Row>
+                
+                <Grid container justify="flex-start" spacing={2}>
                 {products.map(product =>(
-                    <Col key={product._id} sm={12} md={6} lg= {4} xl={3}>
-                        <Product product={product}/>
-                    </Col>
+                    <Grid item key={product._id} xs={12} sm={6} md= {4} lg={3}>
+                        <Product product={product}/> 
+                    </Grid>
 
                 ))}
-            </Row>
-            </div>
+            </Grid>
+            
         }
         </div>
 
@@ -41,4 +42,5 @@ function HomeScreen({map}) {
 
 
 export default HomeScreen
+
 
