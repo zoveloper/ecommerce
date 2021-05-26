@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 
 import Product from '../components/Product'
+import Loader from '../components/Loader'
 import {listProducts} from '../actions/productActions'
 import '../Global.scss'
 import Grid from '@material-ui/core/Grid';
@@ -21,7 +22,7 @@ function HomeScreen({map}) {
     return (
         <div>
             <h1>Latest Products</h1>
-            {loading ? <h2>loading....</h2>
+            {loading ? <Loader/>
                 : error ? <h3>{error}</h3>
                 :
                 

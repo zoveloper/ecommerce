@@ -4,8 +4,7 @@ import styled from "styled-components";
 
 function Product({product}) {
     return (
-        
-        <div>
+        <PostWrapper>
         <Productpost>
             <Link to = {`/product/${product._id}`}>
                 <Thumbnail src={product.image} />
@@ -23,11 +22,18 @@ function Product({product}) {
                 <div>{product.name}</div>
                 <div>${[product.price]}</div>
             </MobileMode>
-        </div>
+        </PostWrapper>
     )
 };
 
 export default Product
+const PostWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    flex-direction: column;
+`
+
 const Productpost = styled.div`
     display: flex;
     justify-content: center;
@@ -70,9 +76,11 @@ const Productpost = styled.div`
     `
     const MobileMode = styled.div`
     display: none;
-    color: red;
+
     @media screen and (max-width: 768px) {  
-        display: block;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start; 
         flex-direction: column;
         color: red;
         padding: 0 5% 5% 5%;
