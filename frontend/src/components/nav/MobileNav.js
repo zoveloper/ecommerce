@@ -8,20 +8,7 @@ import NavLinks from "./NavLinks";
 const MobileNavbar = () => {
   const { isMenuOpen } = useMenuContext();
   useScrollFreeze(isMenuOpen);
-   /* //Mobile Mode
-  const [isMobile,setIsMobile]=useState(false)
- 
-  useEffect(() => {
-    const updateWindowWidth = () => {
-      if (window.innerWidth < 768) setIsMobile(true);
-      else setIsMobile(false)
-    }
 
-    window.addEventListener('resize', updateWindowWidth);
-
-    return () => window.removeEventListener('resize', updateWindowWidth);
-  });
-  */
   return (
     <>
       { isMenuOpen  && (
@@ -47,6 +34,20 @@ const MobileNav = styled.nav`
   justify-content: center;
   align-items: center;
   zIndex: 999;
-
+  transition: .5s ease;
   
 `;
+
+   /* //Mobile Mode
+  const [isMobile,setIsMobile]=useState(false)
+  useEffect(() => {
+    const updateWindowWidth = () => {
+      if (window.innerWidth < 768) setIsMobile(true);
+      else setIsMobile(false)
+    }
+
+    window.addEventListener('resize', updateWindowWidth);
+
+    return () => window.removeEventListener('resize', updateWindowWidth);
+  });
+  */

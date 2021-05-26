@@ -64,7 +64,7 @@ export const NavLink = styled(Link)`
     position: absolute;
     left: 0;
     bottom: -2px;
-    height: 2px;
+    height: 1.7px;
     width: 0;
     background: var(--text);
     transition: width 150ms linear;
