@@ -23,6 +23,6 @@ def getProducts(request):
 
 @api_view(['GET'])
 def getPrdouct(request, pk):
-    product = Product.objects.filter(_id=pk)
-    serializer = ProductSerializer(product, many=True)
+    product = Product.objects.get(_id=pk)
+    serializer = ProductSerializer(product, many=False)
     return Response(serializer.data)
