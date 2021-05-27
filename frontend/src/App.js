@@ -8,7 +8,8 @@ import Navbar from "./components/nav";
 import About from "./About";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
-
+import WorkScreen from "./screens/WorkScreen";
+import WorkDetailScreen from "./screens/WorkDetailScreen";
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
@@ -47,10 +48,11 @@ const App = () => {
         <MenuProvider>
           <Navbar />
         </MenuProvider>
-  
-        <Route exact path="/shop" component={HomeScreen} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/product/:id" component={ProductScreen} />
+        <Route exact path="/works" component={WorkScreen} />
+        <Route  path="/works/:id" component={WorkDetailScreen} />
+        <Route  path="/shop" component={HomeScreen} />
+        <Route  path="/about" component={About} />
+        <Route  path="/product/:id" component={ProductScreen} />
       </div>
     </Router>
   );

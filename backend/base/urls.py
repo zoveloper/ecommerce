@@ -4,5 +4,7 @@ from. import views
 urlpatterns = [
     path('',views.getRoutes, name="routes"),
     path('products/',views.getProducts, name="products"),
-    path('products/<str:pk>',views.getPrdouct, name="product")
+    path('products/<str:pk>',views.getPrdouct, name="product"),
+    path('works/',views.getWorks, name="Works"),
+    path('works/<str:pk>',views.getWorksDetail, name="work-detail"),
 ]

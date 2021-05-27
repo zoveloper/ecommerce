@@ -28,6 +28,6 @@ const LoaderWrapper = styled.div`
     align-items: center;    
     flex-direction: column;
     position:fixed;
-    padding-left: 330px;
-    padding-top: 300px;
+    left: 50%;
+    top: 40%;
 `

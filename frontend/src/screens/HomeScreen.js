@@ -4,7 +4,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import Product from '../components/Product'
 import Loader from '../components/Loader'
 import {listProducts} from '../actions/productActions'
-import '../Global.scss'
+
 import Grid from '@material-ui/core/Grid';
 
 
@@ -16,7 +16,6 @@ function HomeScreen({map}) {
 
     useEffect(() => {
         dispatch(listProducts())
-       
 
     }, [dispatch])
     return (
@@ -24,7 +23,7 @@ function HomeScreen({map}) {
             <h1>Latest Products</h1>
             {loading ? <Loader/>
                 : error ? <h3>{error}</h3>
-                :
+                    :
                 
                 <Grid container justify="flex-start" spacing={2}>
                 {products.map(product =>(
