@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useMenuContext } from "../../state";
 import NavLinks from "./NavLinks";
@@ -14,9 +13,7 @@ const DesktopNavbar = () => {
   return (
     <Navbar>
       <DesktopNav >
-      <Link to="/" className="logo">
-        Logo
-      </Link>
+
       <NavLinks />
       
       </DesktopNav>
@@ -29,7 +26,7 @@ export default DesktopNavbar;
 const Navbar = styled.div`
 display: block;
 position: static;
-width: 200px;
+width: 185px;
 height: 100vh;
 @media screen and (max-width: 768px) {
   justify-content: space-between;
@@ -39,7 +36,7 @@ height: 100vh;
 `
 const DesktopNav = styled.div`
   display: block;
-  width: 200px;
+  width: 185px;
   height: 100vh;
   align-items: center;
   background: var(--bg);
@@ -58,11 +55,7 @@ const DesktopNav = styled.div`
     display: none;
   }
 
-  .logo {
-    position: fixed;
-    color: var(--text);
-    font-size: 32px;
-  }
+  
   .nav-links {
     @media screen and (max-width: 768px) {
       display: none;
@@ -70,3 +63,5 @@ const DesktopNav = styled.div`
   }
   
 `;
+
+

@@ -3,13 +3,20 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useMenuContext } from "../../state";
 
-export const links = ["shop", "works","about"];
+export const links = ["works","shop","about"];
 
 const DesktopNavLinks = () => {
   const { closeMenu } = useMenuContext();
 
   return (
+       <>   
+    <div className="Logo">
+    <Link to="/" >
+          <Logo src={"./logo192.png"} />
+    </Link>
+    </div>     
     <NavLinksWrapper className="nav-links">
+      
       {links.map((link) => (
         <li key={link}>
           <NavLink to={`/${link}`} className="link" onClick={closeMenu}>
@@ -18,6 +25,7 @@ const DesktopNavLinks = () => {
         </li>
       ))}
     </NavLinksWrapper>
+    </>
   );
 };
 
@@ -30,11 +38,17 @@ const NavLinksWrapper = styled.ul`
   justify-content: center;
   align-items: center;
   list-style: none;
-  margin: 30px;
+  margin: 20px;
   li{
-    margin-top:20px;
+    margin-top:10px;
+    font-size: 1.2em;
   }
-  
+  .Logo{
+    display: block;
+    position: fixed;
+    
+  }
+ 
   button {
     background: transparent;
     outline: none;
@@ -72,4 +86,11 @@ export const NavLink = styled(Link)`
   &:hover::before {
     width: 100%;
   }
+`;
+
+const Logo = styled.img`
+  width: 100px;
+  height: : 100px;    
+  padding-top:20px;
+  
 `;

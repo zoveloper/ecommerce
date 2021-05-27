@@ -10,7 +10,7 @@ function WorkDetailScreen({match}) {
         
         async function fetchWork(){
 
-            const{data}= await axios.get(`/api/works/${match.params.id}`)
+            const{data}= await axios.get(`/api/products/${match.params.id}`)
             setWork(data)
         }
         fetchWork()
@@ -18,7 +18,7 @@ function WorkDetailScreen({match}) {
     return (
         <ProudctDetail>
             {work.name}
-            <Link to = {`/work/${work._id}`}>
+            <Link to = {`/products/${work._id}`}>
                 <Thumbnail src={work.image} />
             </Link>
         </ProudctDetail>

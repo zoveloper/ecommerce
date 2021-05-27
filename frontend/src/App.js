@@ -5,7 +5,8 @@ import './Global.scss'
 import reset from "styled-reset";
 import { MenuProvider } from "./state";
 import Navbar from "./components/nav";
-import About from "./About";
+
+import AboutScreen from "./screens/AboutScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import WorkScreen from "./screens/WorkScreen";
@@ -48,10 +49,11 @@ const App = () => {
         <MenuProvider>
           <Navbar />
         </MenuProvider>
-        <Route exact path="/works" component={WorkScreen} />
+        <Route exact path="/" component={WorkScreen} />
+        <Route  path="/works" component={WorkScreen} />
         <Route  path="/works/:id" component={WorkDetailScreen} />
         <Route  path="/shop" component={HomeScreen} />
-        <Route  path="/about" component={About} />
+        <Route  path="/about" component={AboutScreen} />
         <Route  path="/product/:id" component={ProductScreen} />
       </div>
     </Router>

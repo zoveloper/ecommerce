@@ -24,7 +24,7 @@ function WorkScreen() {
             {loading ? <Loader/>
                 : error ? <h3>{error}</h3>
                     :
-                <Grid container justify="flex-start" spacing={3}>
+                <Grid container justify="flex-start" spacing={1}>
                 {works.map(work =>(
                     <Grid item key={work._id} xs={12} sm={6} md= {4} lg={3}>
                         <Work work={work}/> 

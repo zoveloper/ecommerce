@@ -6,14 +6,13 @@ function Work({work}) {
     return (
         <WorkWrapper>
         <Workpost>
-            <Link to = {`/product/${work._id}`}>
+            <Link to = {`/works/${work._id}`}>
                 <Thumbnail src={work.image} />
             </Link>
             <Overlay>
-                <Link to = {`/product/${work._id}`}>
+                <Link to = {`/works/${work._id}`}>
                     <WorkName>
                         <div>{work.name}</div>
-                        <div>${[work.price]}</div>
                     </WorkName>
                 </Link>
             </Overlay>  
