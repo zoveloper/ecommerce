@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useMenuContext } from "../../state";
 import NavLinks from "./NavLinks";
+import Logo from './Logo'
 
 
 const DesktopNavbar = () => {
@@ -13,9 +14,8 @@ const DesktopNavbar = () => {
   return (
     <Navbar>
       <DesktopNav >
-
+      <Logo/>
       <NavLinks />
-      
       </DesktopNav>
     </Navbar>
   );
@@ -54,7 +54,12 @@ const DesktopNav = styled.div`
     padding: 0 30px;
     display: none;
   }
-
+  
+  .Logo{
+    display: block;
+    position: fixed;
+    
+  }
   
   .nav-links {
     @media screen and (max-width: 768px) {

@@ -10,11 +10,7 @@ const DesktopNavLinks = () => {
 
   return (
        <>   
-    <div className="Logo">
-    <Link to="/" >
-          <Logo src={"./logo192.png"} />
-    </Link>
-    </div>     
+  
     <NavLinksWrapper className="nav-links">
       
       {links.map((link) => (
@@ -43,11 +39,7 @@ const NavLinksWrapper = styled.ul`
     margin-top:10px;
     font-size: 1.2em;
   }
-  .Logo{
-    display: block;
-    position: fixed;
-    
-  }
+
  
   button {
     background: transparent;
@@ -88,9 +80,3 @@ export const NavLink = styled(Link)`
   }
 `;
 
-const Logo = styled.img`
-  width: 100px;
-  height: : 100px;    
-  padding-top:20px;
-  
-`;

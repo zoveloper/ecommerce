@@ -53,8 +53,7 @@ function ProductScreen({ match }) {
                                             Description: ${product.description}
                                         </ListGroup.Item>
                                     </ListGroup>
-                            </Col>
-                            <Col md={3}>    
+   
                                 <Card>
                                     <ListGroup variant="flush">
                                         <ListGroup.Item>
@@ -114,9 +113,10 @@ function ProductScreen({ match }) {
                                         </ListGroup.Item>
                                     </ListGroup>
                                 </Card>
-                            </Col> 
+
+                            </Col>
+                            
                         </Row>
-                  
                                                     
                     </div>
                 )

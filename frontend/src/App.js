@@ -50,8 +50,8 @@ const App = () => {
           <Navbar />
         </MenuProvider>
         <Route exact path="/" component={WorkScreen} />
-        <Route  path="/works" component={WorkScreen} />
-        <Route  path="/works/:id" component={WorkDetailScreen} />
+        <Route exact  path="/works" component={WorkScreen} />
+        <Route  exact path="/works/:id" component={WorkDetailScreen} />
         <Route  path="/shop" component={HomeScreen} />
         <Route  path="/about" component={AboutScreen} />
         <Route  path="/product/:id" component={ProductScreen} />
