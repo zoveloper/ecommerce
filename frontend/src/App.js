@@ -5,12 +5,15 @@ import './Global.scss'
 import reset from "styled-reset";
 import { MenuProvider } from "./state";
 import Navbar from "./components/nav";
+import CartIcon from './components/CartIcon'
 
 import AboutScreen from "./screens/AboutScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import WorkScreen from "./screens/WorkScreen";
 import WorkDetailScreen from "./screens/WorkDetailScreen";
+import CartScreen from "./screens/CartScreen";
+
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
@@ -19,8 +22,6 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: "Montserrat", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     background-color: var(--bg);
     color: var(--text);
   }
@@ -48,6 +49,7 @@ const App = () => {
         <GlobalStyle />
         <MenuProvider>
           <Navbar />
+          
         </MenuProvider>
         <Route exact path="/" component={WorkScreen} />
         <Route exact  path="/works" component={WorkScreen} />
@@ -55,6 +57,8 @@ const App = () => {
         <Route  path="/shop" component={HomeScreen} />
         <Route  path="/about" component={AboutScreen} />
         <Route  path="/product/:id" component={ProductScreen} />
+        <Route  path="/cart/:id?" component={CartScreen} />
+        <CartIcon />
       </div>
     </Router>
   );

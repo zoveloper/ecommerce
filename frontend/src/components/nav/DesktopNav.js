@@ -1,16 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { useMenuContext } from "../../state";
+
 import NavLinks from "./NavLinks";
 import Logo from './Logo'
 
 
 const DesktopNavbar = () => {
-  const { isMenuOpen, toggleMenu } = useMenuContext();
 
-
-  console.log(isMenuOpen)
-  console.log(toggleMenu)
   return (
     <Navbar>
       <DesktopNav >

@@ -62,7 +62,6 @@ const Productpost = styled.div`
         align-items: center;   
         opacity: 0.95;
 
-        transition: background-color 500ms ease-in 1s;
         background-color: rgb(255, 161, 77);
         
         height: 100%;

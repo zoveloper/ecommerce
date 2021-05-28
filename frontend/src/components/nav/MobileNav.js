@@ -53,7 +53,7 @@ const Toggle = styled.div`
     display: block;
     position: fixed;
     right: 5%;
-    bottom: 5%;
+    top: 5%;
   }
 }
 `
