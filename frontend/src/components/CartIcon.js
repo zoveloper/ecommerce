@@ -1,15 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {IconButton,Badge} from '@material-ui/core'
 import styled from "styled-components";
 function CartIcon() {
     return (
         <IconWrapper>
-        <IconButton arial-label="Show cart items" color="inherit">
+        <Link to = {`/cart`}>
+        <IconButton component={Link} to="/cart" arial-label="Show cart items" color="inherit">
             <Badge badgeContent={2} color ="secondary">
                 <ShoppingCartIcon/>
             </Badge>
         </IconButton>
+        </Link>
         </IconWrapper>
     )
 }
