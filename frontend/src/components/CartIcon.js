@@ -1,15 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { useSelector } from 'react-redux'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import {IconButton,Badge} from '@material-ui/core'
 import styled from "styled-components";
 function CartIcon() {
+    const cart = useSelector(state => state.cart)
+    const {cartItems} = cart
+
+    const totalqty=cartItems.map(qty =>qty.qty)
+    const qtysum = totalqty.reduce(function(a, b) {
+        return a + b;
+    }, 0);
     return (
         <IconWrapper>
         <Link to = {`/cart`}>
         <IconButton component={Link} to="/cart" arial-label="Show cart items" color="inherit">
-            <Badge badgeContent={2} color ="secondary">
+            <Badge badgeContent={qtysum} color ="secondary">
                 <ShoppingCartIcon/>
             </Badge>
         </IconButton>

@@ -10,14 +10,19 @@ import { addToCart, removeFromCart } from '../actions/cartActions'
 function CartScreen({match, location, history}) {
     const productId = match.params.id
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
-    
-
     const dispatch = useDispatch()
-
     const cart = useSelector(state => state.cart)
     const {cartItems} = cart
-    console.log('cartItems', cartItems)
 
+    const totalqty=cartItems.map(qty =>qty.qty)
+    const qtysum = totalqty.reduce(function(a, b) {
+        return a + b;
+    }, 0);
+   console.log(qtysum)
+
+
+    console.log(cartItems.map(qty =>qty.qty))
+    console.log(totalqty)
     useEffect(() =>{
         if(productId){
             dispatch(addToCart(productId, qty))

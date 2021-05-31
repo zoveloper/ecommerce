@@ -9,11 +9,12 @@ import { CART_ADD_ITEM,
 
 
 export const cartReducer = (state={cartItems: [], shippingAddress: {}}, action) => {
+    console.log(state)
     switch(action.type){
         case CART_ADD_ITEM:
             const item = action.payload
             const existItem = state.cartItems.find(x => x.product === item.product)
-
+            
             if(existItem){
                 return{
                     ...state,
