@@ -10,7 +10,7 @@ import {
  } from  '../constants/workConstants'
 
 export const workListReducer = (state = {works:[]}, action) =>{
-    console.log(action.type)
+
 
     switch (action.type){
         case WORK_LIST_REQUEST:

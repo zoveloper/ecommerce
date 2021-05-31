@@ -49,7 +49,7 @@ const App = () => {
         <GlobalStyle />
         <MenuProvider>
           <Navbar />
-          
+          <CartIcon />
         </MenuProvider>
         <Route exact path="/" component={WorkScreen} />
         <Route exact  path="/works" component={WorkScreen} />
@@ -58,7 +58,7 @@ const App = () => {
         <Route  path="/about" component={AboutScreen} />
         <Route  path="/product/:id" component={ProductScreen} />
         <Route  path="/cart/:id?" component={CartScreen} />
-        <CartIcon />
+        
       </div>
     </Router>
   );

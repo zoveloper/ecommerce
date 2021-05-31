@@ -9,6 +9,8 @@ const MobileNavbar = () => {
   const { isMenuOpen, toggleMenu } = useMenuContext();
   useScrollFreeze(isMenuOpen);
 
+
+
   return (
     <>
       { isMenuOpen  && (
@@ -36,9 +38,12 @@ const MobileNav = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  zIndex: 999;
+  z-index: 89;
   transition: .5s ease;
   
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
   
 `;
 const Toggle = styled.div`

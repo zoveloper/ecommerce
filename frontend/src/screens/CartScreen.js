@@ -14,15 +14,9 @@ function CartScreen({match, location, history}) {
     const cart = useSelector(state => state.cart)
     const {cartItems} = cart
 
-    const totalqty=cartItems.map(qty =>qty.qty)
-    const qtysum = totalqty.reduce(function(a, b) {
-        return a + b;
-    }, 0);
-   console.log(qtysum)
 
 
     console.log(cartItems.map(qty =>qty.qty))
-    console.log(totalqty)
     useEffect(() =>{
         if(productId){
             dispatch(addToCart(productId, qty))

@@ -10,7 +10,7 @@ import {
  } from  '../constants/productConstants'
 
 export const productListReducer = (state = {products:[]}, action) =>{
-    console.log(action.type)
+
 
     switch (action.type){
         case PRODUCT_LIST_REQUEST:
@@ -34,7 +34,6 @@ export const productListReducer = (state = {products:[]}, action) =>{
 }
 
 export const productDetailsReducer = (state = {product:[]}, action) =>{
-    console.log({product:{reviews:[]}})
     switch (action.type){
         case PRODUCT_DETAILS_REQUEST:
             return {loading: true, ...state}

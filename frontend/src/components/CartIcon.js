@@ -9,13 +9,12 @@ function CartIcon() {
     const {cartItems} = cart
 
     const totalqty=cartItems.map(qty =>qty.qty)
-    const qtysum = totalqty.reduce(function(a, b) {
-        return a + b;
-    }, 0);
+    const qtysum = totalqty.reduce((total, current)=> total + current);
+
     return (
         <IconWrapper>
         <Link to = {`/cart`}>
-        <IconButton component={Link} to="/cart" arial-label="Show cart items" color="inherit">
+        <IconButton  arial-label="Show cart items" color="inherit">
             <Badge badgeContent={qtysum} color ="secondary">
                 <ShoppingCartIcon/>
             </Badge>
@@ -32,6 +31,7 @@ display: block;
 position: fixed;
 right: 1%;
 bottom: 50%;
+z-index: 90;
 
 @media screen and (max-width: 768px) {
     display: block;
