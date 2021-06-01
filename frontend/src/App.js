@@ -13,6 +13,7 @@ import ProductScreen from "./screens/ProductScreen";
 import WorkScreen from "./screens/WorkScreen";
 import WorkDetailScreen from "./screens/WorkDetailScreen";
 import CartScreen from "./screens/CartScreen";
+import CheckoutScreen from "./screens/CheckoutScreen";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -58,7 +59,7 @@ const App = () => {
         <Route  path="/about" component={AboutScreen} />
         <Route  path="/product/:id" component={ProductScreen} />
         <Route  path="/cart/:id?" component={CartScreen} />
-        
+        <Route  path="/checkout" component={CheckoutScreen} />
       </div>
     </Router>
   );

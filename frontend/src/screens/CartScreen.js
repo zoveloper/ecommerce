@@ -1,10 +1,13 @@
 import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Form, Card } from 'react-bootstrap'
+import DeleteIcon from '@material-ui/icons/Delete';
 import  Message  from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
+import { Button } from '@material-ui/core';
+import useStyles from './styles';
 
 
 function CartScreen({match, location, history}) {
@@ -13,7 +16,7 @@ function CartScreen({match, location, history}) {
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cart)
     const {cartItems} = cart
-
+    const classes = useStyles();
 
 
     console.log(cartItems.map(qty =>qty.qty))
@@ -29,7 +32,7 @@ function CartScreen({match, location, history}) {
     }
 
     const checkoutHandler = () =>{
-        history.push('/login?redirect=shipping')
+        history.push('/checkout')
 
     }
 
@@ -39,7 +42,7 @@ function CartScreen({match, location, history}) {
                 <h1>Shopping Cart</h1>
                 {cartItems.length === 0 ? (
                     <Message variant='info'>
-                        Your cart is empty <Link to='/'>Go Back</Link>
+                        Your cart is empty <Link to='/shop'>Go Back</Link>
                     </Message>
                 ) : (
                     <ListGroup variant='flush'>
@@ -83,7 +86,7 @@ function CartScreen({match, location, history}) {
                                         variant='light'
                                         onClick={() => removeFromCartHandler(item.product)}
                                     >
-                                            <i className='fas fa-trash'></i>
+                                            <DeleteIcon/>
                                         </Button>
                                     </Col>
                                 </Row>
@@ -105,14 +108,17 @@ function CartScreen({match, location, history}) {
                     </ListGroup>
 
                     <ListGroup.Item>
-                        <Button
-                            type='button'
-                            className='btn-block'
+                            <Button 
+                            className={classes.checkoutButton} 
+                            component={Link} to="/checkout" 
+                            size="large" 
+                            type="button" 
+                            variant="contained" 
+                            color="primary"
                             disabled={cartItems.length === 0}
                             onClick={checkoutHandler}
-                        >
-                            Proceed To Checkout
-                        </Button>
+                            >Checkout</Button>
+
                     </ListGroup.Item>
 
                 </Card>

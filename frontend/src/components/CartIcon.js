@@ -9,7 +9,7 @@ function CartIcon() {
     const {cartItems} = cart
 
     const totalqty=cartItems.map(qty =>qty.qty)
-    const qtysum = totalqty.reduce((total, current)=> total + current);
+    const qtysum = totalqty.reduce((total, current)=> total + current,0);
 
     return (
         <IconWrapper>
