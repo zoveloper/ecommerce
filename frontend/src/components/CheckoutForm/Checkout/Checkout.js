@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import CheckoutSteps from '../../../components/CheckoutSteps'
 import { createOrder } from '../../../actions/orderActions'
-import { saveShippingAddress } from '../../../actions/cartActions'
+import { saveShippingAddress,savePaymentMethod } from '../../../actions/cartActions'
+
 import { ORDER_CREATE_RESET } from '../../../constants/orderConstants'
+
 import Message from '../../../components/Message'
 
 const Checkout = ({history}) => {
@@ -51,69 +53,110 @@ const Checkout = ({history}) => {
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(saveShippingAddress({address, city, postalCode, country}))
-        
+   
     }
+
+    const [paymentMethod, setPaymentMethod] = useState('credit')
     
+    const submitHandler1 = (f) =>{
+      f.preventDefault()
+      dispatch(savePaymentMethod(paymentMethod))
+
+
+  }
+    
+  
+
 
     return (
         <div>
+          <CheckoutSteps step1 step2 step3 />
           <Form onSubmit={submitHandler}>
+          <Form.Group controlId='address'>
+              <Form.Label>Address</Form.Label>
+              <Form.Control
+                  required
+                  type='text'
+                  placeholder='Enter address'
+                  value={address ? address : ''}
+                  onChange={(e) => setAddress(e.target.value)}
+              >
+              </Form.Control>
+          </Form.Group>
 
-<Form.Group controlId='address'>
-    <Form.Label>Address</Form.Label>
-    <Form.Control
-        required
-        type='text'
-        placeholder='Enter address'
-        value={address ? address : ''}
-        onChange={(e) => setAddress(e.target.value)}
-    >
-    </Form.Control>
-</Form.Group>
+          <Form.Group controlId='city'>
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                  required
+                  type='text'
+                  placeholder='Enter city'
+                  value={city ? city : ''}
+                  onChange={(e) => setCity(e.target.value)}
+              >
+              </Form.Control>
+          </Form.Group>
 
-<Form.Group controlId='city'>
-    <Form.Label>City</Form.Label>
-    <Form.Control
-        required
-        type='text'
-        placeholder='Enter city'
-        value={city ? city : ''}
-        onChange={(e) => setCity(e.target.value)}
-    >
-    </Form.Control>
-</Form.Group>
+          <Form.Group controlId='postalCode'>
+              <Form.Label>Postal Code</Form.Label>
+              <Form.Control
+                  required
+                  type='text'
+                  placeholder='Enter postal code'
+                  value={postalCode ? postalCode : ''}
+                  onChange={(e) => setPostalCode(e.target.value)}
+              >
+              </Form.Control>
+          </Form.Group>
 
-<Form.Group controlId='postalCode'>
-    <Form.Label>Postal Code</Form.Label>
-    <Form.Control
-        required
-        type='text'
-        placeholder='Enter postal code'
-        value={postalCode ? postalCode : ''}
-        onChange={(e) => setPostalCode(e.target.value)}
-    >
-    </Form.Control>
-</Form.Group>
-
-<Form.Group controlId='country'>
-    <Form.Label>Country</Form.Label>
-    <Form.Control
-        required
-        type='text'
-        placeholder='Enter country'
-        value={country ? country : ''}
-        onChange={(e) => setCountry(e.target.value)}
-    >
-    </Form.Control>
-</Form.Group>
-<Button type='submit' variant='primary'>
-    Continue
-</Button>
+          <Form.Group controlId='country'>
+              <Form.Label>Country</Form.Label>
+              <Form.Control
+                  required
+                  type='text'
+                  placeholder='Enter country'
+                  value={country ? country : ''}
+                  onChange={(e) => setCountry(e.target.value)}
+              >
+              </Form.Control>
+          </Form.Group>
+          <Button type='submit' variant='primary'>
+              Continue
+          </Button>
 
 
-</Form>
+          </Form>
           ////
-            <CheckoutSteps step1 step2 step3 step4 />
+          <Form onSubmit={submitHandler1}>
+          <Form.Group>
+                    <Form.Label as='legend'>Select Method</Form.Label>
+                    <Col>
+                        <Form.Check
+                            type='radio'
+                            label='PayPal'
+                            id='paypal'
+                            name = 'pay'
+                            
+                            onChange={() => setPaymentMethod('paypal')}
+                        >
+                          </Form.Check>
+                          <Form.Check
+                            type='radio'
+                            label='Credit Card'
+                            id='creditcard'
+                            name = 'credit'
+                            
+                            onChange={() => setPaymentMethod('Credit Card')}
+                        ></Form.Check>
+                                        <Button type='submit' variant='primary'>
+                    Continue
+                </Button>
+
+                        
+                    </Col>
+                </Form.Group>
+                </Form>
+          ////
+            
             <Row>
                 <Col md={8}>
                     <ListGroup variant='flush'>
