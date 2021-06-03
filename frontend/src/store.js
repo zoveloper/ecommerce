@@ -11,6 +11,14 @@ import {workListReducer
 import {cartReducer
 } from './reducers/cartReducers'
 
+import { orderCreateReducer, 
+        orderDetailsReducer,
+        orderPayReducer,
+        orderDeliverReducer,
+        orderListMyReducer,
+        orderListReducer,
+} from './reducers/orderReducers'
+
 const reducer = combineReducers({
     productList : productListReducer,
     productDetails:productDetailsReducer,
@@ -18,15 +26,26 @@ const reducer = combineReducers({
     workList:workListReducer,
     workDetails:workDetailsReducer,
     
-    cart:cartReducer
+    cart:cartReducer,
+
+    orderCreate:orderCreateReducer,
+    orderDetails: orderDetailsReducer,
+    orderPay : orderPayReducer,
+    orderListMy: orderListMyReducer,
+    orderList:orderListReducer,
+    orderDeliver : orderDeliverReducer,
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ?
     JSON.parse(localStorage.getItem('cartItems')) : []
 
+    const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ?
+    JSON.parse(localStorage.getItem('shippingAddress')) : {}
 const initialState = {
     cart:{
-        cartItems: cartItemsFromStorage}
+        cartItems: cartItemsFromStorage,
+        shippingAddress: shippingAddressFromStorage,
+    }
         
 }
 

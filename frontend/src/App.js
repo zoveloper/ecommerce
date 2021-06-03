@@ -43,7 +43,6 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const App = () => {
-  
   return (
     <Router>
       <div className="app">
