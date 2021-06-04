@@ -58,8 +58,8 @@ const Checkout = ({history}) => {
 
     const [paymentMethod, setPaymentMethod] = useState('credit')
     
-    const submitHandler1 = (f) =>{
-      f.preventDefault()
+    const submitHandler1 = (e) =>{
+      e.preventDefault()
       dispatch(savePaymentMethod(paymentMethod))
 
 
@@ -130,28 +130,27 @@ const Checkout = ({history}) => {
           <Form.Group>
                     <Form.Label as='legend'>Select Method</Form.Label>
                     <Col>
-                        <Form.Check
+                    <Form.Check
                             type='radio'
-                            label='PayPal'
+                            label='PayPal or Credit Card'
                             id='paypal'
-                            name = 'pay'
-                            
-                            onChange={() => setPaymentMethod('paypal')}
+                            name = 'paymentMethod'
+                            checked
+                            onChange={(e) => setPaymentMethod(e.target.value)}
                         >
                           </Form.Check>
                           <Form.Check
                             type='radio'
                             label='Credit Card'
                             id='creditcard'
-                            name = 'credit'
+                            name = 'paymentMethod1'
                             
-                            onChange={() => setPaymentMethod('Credit Card')}
+                            onChange={(e) => setPaymentMethod(e.target.value)}
                         ></Form.Check>
-                                        <Button type='submit' variant='primary'>
+                <Button type='submit' variant='primary'>
                     Continue
                 </Button>
 
-                        
                     </Col>
                 </Form.Group>
                 </Form>
