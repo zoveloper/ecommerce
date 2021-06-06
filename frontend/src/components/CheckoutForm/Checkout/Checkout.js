@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import {  Form,Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
+import { Form, Row, Col, ListGroup, Button,Image, Card } from 'react-bootstrap'
+
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import CheckoutSteps from '../../../components/CheckoutSteps'
@@ -44,6 +45,10 @@ const Checkout = ({history}) => {
     }
     const {shippingAddress} = cart
 
+    const [firstName, setFirstName] = useState(shippingAddress.firstName)
+    const [lastName, setLastName] = useState(shippingAddress.lastName)
+    const [email, setEmail] = useState(shippingAddress.email)
+    const [phone, setPhone] = useState(shippingAddress.phone)
     
     const [address, setAddress] = useState(shippingAddress.address)
     const [city, setCity] = useState(shippingAddress.city)
@@ -52,14 +57,14 @@ const Checkout = ({history}) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(saveShippingAddress({address, city, postalCode, country}))
+        dispatch(saveShippingAddress({firstName,lastName,email,phone, address, city, postalCode, country}))
    
     }
 
     const [paymentMethod, setPaymentMethod] = useState('credit')
     
-    const submitHandler1 = (e) =>{
-      e.preventDefault()
+    const submitHandler1 = (f) =>{
+      f.preventDefault()
       dispatch(savePaymentMethod(paymentMethod))
 
 
@@ -70,8 +75,56 @@ const Checkout = ({history}) => {
 
     return (
         <div>
+            //
           <CheckoutSteps step1 step2 step3 />
           <Form onSubmit={submitHandler}>
+            ///
+            <Form.Group controlId='firstName'>
+              <Form.Label>firstName</Form.Label>
+              <Form.Control
+                  required
+                  type='text'
+                  placeholder='Enter firstName'
+                  value={firstName ? firstName : ''}
+                  onChange={(e) => setFirstName(e.target.value)}
+              >
+              </Form.Control>
+          </Form.Group>
+          <Form.Group controlId='LastName'>
+              <Form.Label>LastName</Form.Label>
+              <Form.Control
+                  required
+                  type='text'
+                  placeholder='Enter LastName'
+                  value={lastName ? lastName : ''}
+                  onChange={(e) => setLastName(e.target.value)}
+              >
+              </Form.Control>
+          </Form.Group>
+            //
+            <Form.Group controlId='email'>
+              <Form.Label>email</Form.Label>
+              <Form.Control
+                  required
+                  type='email'
+                  placeholder='Enter email'
+                  value={email ? email : ''}
+                  onChange={(e) => setEmail(e.target.value)}
+              >
+
+              </Form.Control>
+          </Form.Group>
+          <Form.Group controlId='phone'>
+              <Form.Label>phone</Form.Label>
+              <Form.Control
+                  required
+                  type='text'
+                  placeholder='Enter phone'
+                  value={phone ? phone : ''}
+                  onChange={(e) => setPhone(e.target.value)}
+              >
+              </Form.Control>
+          </Form.Group>
           <Form.Group controlId='address'>
               <Form.Label>Address</Form.Label>
               <Form.Control
@@ -131,21 +184,22 @@ const Checkout = ({history}) => {
                     <Form.Label as='legend'>Select Method</Form.Label>
                     <Col>
                     <Form.Check
-                            type='radio'
-                            label='PayPal or Credit Card'
+                            type='checkbox'
+                            label='PayPal'
+                            value="Paypal"
                             id='paypal'
                             name = 'paymentMethod'
-                            checked
-                            onChange={(e) => setPaymentMethod(e.target.value)}
+                            
+                            onChange={(f) => setPaymentMethod(f.target.value)}
                         >
                           </Form.Check>
                           <Form.Check
-                            type='radio'
+                            type='checkbox'
                             label='Credit Card'
+                            value="Credit Card"
                             id='creditcard'
                             name = 'paymentMethod1'
-                            
-                            onChange={(e) => setPaymentMethod(e.target.value)}
+                            onChange={(f) => setPaymentMethod(f.target.value)}
                         ></Form.Check>
                 <Button type='submit' variant='primary'>
                     Continue
