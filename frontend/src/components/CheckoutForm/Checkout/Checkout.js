@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import { Form, Row, Col, ListGroup, Button,Image, Card } from 'react-bootstrap'
-
+import { Form, Row, Col, ListGroup,Image, Card } from 'react-bootstrap'
+import { InputLabel, Select, MenuItem, Button, Grid, Typography } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import CheckoutSteps from '../../../components/CheckoutSteps'
@@ -8,8 +8,11 @@ import { createOrder } from '../../../actions/orderActions'
 import { saveShippingAddress,savePaymentMethod } from '../../../actions/cartActions'
 
 import { ORDER_CREATE_RESET } from '../../../constants/orderConstants'
-
 import Message from '../../../components/Message'
+
+import FormInput from '../CustomTextField';
+import { useForm, FormProvider } from 'react-hook-form';
+
 
 const Checkout = ({history}) => {
   const orderCreate = useSelector(state => state.orderCreate)
@@ -70,114 +73,80 @@ const Checkout = ({history}) => {
 
   }
     
-  
+  const methods = useForm();
 
 
     return (
         <div>
-            //
-          <CheckoutSteps step1 step2 step3 />
-          <Form onSubmit={submitHandler}>
-            ///
-            <Form.Group controlId='firstName'>
-              <Form.Label>firstName</Form.Label>
-              <Form.Control
-                  required
-                  type='text'
-                  placeholder='Enter firstName'
-                  value={firstName ? firstName : ''}
-                  onChange={(e) => setFirstName(e.target.value)}
-              >
-              </Form.Control>
-          </Form.Group>
-          <Form.Group controlId='LastName'>
-              <Form.Label>LastName</Form.Label>
-              <Form.Control
-                  required
-                  type='text'
-                  placeholder='Enter LastName'
-                  value={lastName ? lastName : ''}
-                  onChange={(e) => setLastName(e.target.value)}
-              >
-              </Form.Control>
-          </Form.Group>
-            //
-            <Form.Group controlId='email'>
-              <Form.Label>email</Form.Label>
-              <Form.Control
-                  required
-                  type='email'
-                  placeholder='Enter email'
-                  value={email ? email : ''}
-                  onChange={(e) => setEmail(e.target.value)}
-              >
-
-              </Form.Control>
-          </Form.Group>
-          <Form.Group controlId='phone'>
-              <Form.Label>phone</Form.Label>
-              <Form.Control
-                  required
-                  type='text'
-                  placeholder='Enter phone'
-                  value={phone ? phone : ''}
-                  onChange={(e) => setPhone(e.target.value)}
-              >
-              </Form.Control>
-          </Form.Group>
-          <Form.Group controlId='address'>
-              <Form.Label>Address</Form.Label>
-              <Form.Control
-                  required
-                  type='text'
-                  placeholder='Enter address'
-                  value={address ? address : ''}
-                  onChange={(e) => setAddress(e.target.value)}
-              >
-              </Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId='city'>
-              <Form.Label>City</Form.Label>
-              <Form.Control
-                  required
-                  type='text'
-                  placeholder='Enter city'
-                  value={city ? city : ''}
-                  onChange={(e) => setCity(e.target.value)}
-              >
-              </Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId='postalCode'>
-              <Form.Label>Postal Code</Form.Label>
-              <Form.Control
-                  required
-                  type='text'
-                  placeholder='Enter postal code'
-                  value={postalCode ? postalCode : ''}
-                  onChange={(e) => setPostalCode(e.target.value)}
-              >
-              </Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId='country'>
-              <Form.Label>Country</Form.Label>
-              <Form.Control
-                  required
-                  type='text'
-                  placeholder='Enter country'
-                  value={country ? country : ''}
-                  onChange={(e) => setCountry(e.target.value)}
-              >
-              </Form.Control>
-          </Form.Group>
-          <Button type='submit' variant='primary'>
+          <Typography variant="h6" gutterBottom>Shipping address</Typography>
+          <FormProvider {...methods}>
+          <form onSubmit={submitHandler}>
+            <Grid Container spcing={3}>
+            <FormInput 
+            required
+            name="firstName"
+            type='text'
+            placeholder='Enter firstName'
+            value={firstName ? firstName : ''}
+            onChange={(e) => setFirstName(e.target.value)} />
+            <FormInput 
+            required
+            name="firstName"
+            type='text'
+            placeholder='Enter LastName'
+            value={lastName ? lastName : ''}
+            onChange={(e) => setLastName(e.target.value)}
+            />
+            <FormInput 
+            required
+            name="firstName"
+            type='email'
+            placeholder='Enter email'
+            value={email ? email : ''}
+            onChange={(e) => setEmail(e.target.value)}
+            />
+            <FormInput 
+            required
+            name="phone"
+            type='tel'
+            placeholder='number'
+            value={phone ? phone : ''}
+            onChange={(e) => setPhone(e.target.value)}
+            />
+            <FormInput 
+            required
+            name="firstName"
+            type='text'
+            placeholder='Enter address'
+            value={address ? address : ''}
+            onChange={(e) => setAddress(e.target.value)}
+            />
+            
+            <FormInput 
+            required
+            name="firstName"
+            type='text'
+            placeholder='Enter city'
+            value={city ? city : ''}
+            onChange={(e) => setCity(e.target.value)}
+            />
+            <FormInput 
+              required
+              name="firstName"
+              type='text'
+              placeholder='Enter postal code'
+              value={postalCode ? postalCode : ''}
+              onChange={(e) => setPostalCode(e.target.value)}
+            />
+            </Grid>
+            <Button type='submit' variant='primary'>
               Continue
-          </Button>
+            </Button>
+          </form>
 
+          </FormProvider>
+            //
 
-          </Form>
           ////
           <Form onSubmit={submitHandler1}>
           <Form.Group>
