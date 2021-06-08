@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Form, Row, Col, ListGroup,Image, Card } from 'react-bootstrap'
-import { InputLabel, Select, MenuItem, Button, Grid, Typography } from '@material-ui/core'
+import { CssBaseline, Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import CheckoutSteps from '../../../components/CheckoutSteps'
@@ -12,19 +12,21 @@ import Message from '../../../components/Message'
 
 import FormInput from '../CustomTextField';
 import { useForm, FormProvider } from 'react-hook-form';
+import AddressForm from '../AddressForm'
+import PaymentForm from '../PaymentForm'
+import useStyles from './styles';
 
+const steps = ['Shipping address', 'Payment details'];
 
 const Checkout = ({history}) => {
-  const orderCreate = useSelector(state => state.orderCreate)
+    const [activeStep, setActiveStep] = useState(0);
+    const classes = useStyles();
+    const orderCreate = useSelector(state => state.orderCreate)
     const {order, error, success} = orderCreate
 
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cart)
 
-    cart.itemsPrice =  cart.cartItems.reduce((acc, item) => acc +item.price * item.qty, 0).toFixed(2)
-    cart.shippingPrice = (cart.itemsPrice > 50 ? 0 : 5).toFixed(2)
-    cart.taxPrice = Number((0.13) * cart.itemsPrice).toFixed(2)
-    cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
 
 
     useEffect(() =>{
@@ -46,252 +48,57 @@ const Checkout = ({history}) => {
         }))
 
     }
+
     const {shippingAddress} = cart
 
-    const [firstName, setFirstName] = useState(shippingAddress.firstName)
-    const [lastName, setLastName] = useState(shippingAddress.lastName)
-    const [email, setEmail] = useState(shippingAddress.email)
-    const [phone, setPhone] = useState(shippingAddress.phone)
-    
-    const [address, setAddress] = useState(shippingAddress.address)
-    const [city, setCity] = useState(shippingAddress.city)
-    const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
-    const [country, setCountry] = useState(shippingAddress.country)
-
-    const submitHandler = (e) => {
-        e.preventDefault()
-        dispatch(saveShippingAddress({firstName,lastName,email,phone, address, city, postalCode, country}))
-   
-    }
-
-    const [paymentMethod, setPaymentMethod] = useState('credit')
-    
-    const submitHandler1 = (f) =>{
-      f.preventDefault()
-      dispatch(savePaymentMethod(paymentMethod))
-
-
-  }
     
   const methods = useForm();
-
+  const Form = () => (activeStep === 1
+    ? <AddressForm />
+    : <PaymentForm  />);
+  let Confirmation = () => (order.customer ? (
+    <>
+      <div>
+        <Typography variant="h5">Thank you for your purchase, {order.customer.firstname} {order.customer.lastname}!</Typography>
+        <Divider className={classes.divider} />
+        <Typography variant="subtitle2">Order ref: {order.customer_reference}</Typography>
+      </div>
+      <br />
+      <Button component={Link} variant="outlined" type="button" to="/">Back to home</Button>
+    </>
+  ) : (
+    <div className={classes.spinner}>
+      <CircularProgress />
+    </div>
+  ));
 
     return (
         <div>
-          <Typography variant="h6" gutterBottom>Shipping address</Typography>
-          <FormProvider {...methods}>
-          <form onSubmit={submitHandler}>
-            <Grid Container spcing={3}>
-            <FormInput 
-            required
-            name="firstName"
-            type='text'
-            placeholder='Enter firstName'
-            value={firstName ? firstName : ''}
-            onChange={(e) => setFirstName(e.target.value)} />
-            <FormInput 
-            required
-            name="firstName"
-            type='text'
-            placeholder='Enter LastName'
-            value={lastName ? lastName : ''}
-            onChange={(e) => setLastName(e.target.value)}
-            />
-            <FormInput 
-            required
-            name="firstName"
-            type='email'
-            placeholder='Enter email'
-            value={email ? email : ''}
-            onChange={(e) => setEmail(e.target.value)}
-            />
-            <FormInput 
-            required
-            name="phone"
-            type='tel'
-            placeholder='number'
-            value={phone ? phone : ''}
-            onChange={(e) => setPhone(e.target.value)}
-            />
-            <FormInput 
-            required
-            name="firstName"
-            type='text'
-            placeholder='Enter address'
-            value={address ? address : ''}
-            onChange={(e) => setAddress(e.target.value)}
-            />
-            
-            <FormInput 
-            required
-            name="firstName"
-            type='text'
-            placeholder='Enter city'
-            value={city ? city : ''}
-            onChange={(e) => setCity(e.target.value)}
-            />
-            <FormInput 
-              required
-              name="firstName"
-              type='text'
-              placeholder='Enter postal code'
-              value={postalCode ? postalCode : ''}
-              onChange={(e) => setPostalCode(e.target.value)}
-            />
-            </Grid>
-            <Button type='submit' variant='primary'>
-              Continue
-            </Button>
-          </form>
-
-          </FormProvider>
-            //
+          
+            //  
+          
+          <>
+      <CssBaseline />
+      <div className={classes.toolbar} />
+      <main className={classes.layout}>
+        <Paper className={classes.paper}>
+          <Typography variant="h4" align="center">Checkout</Typography>
+          <Stepper activeStep={activeStep} className={classes.stepper}>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          {activeStep === steps.length ? <Confirmation /> :   <Form />}
+        </Paper>
+      </main>
+    </>
+          ////
 
           ////
-          <Form onSubmit={submitHandler1}>
-          <Form.Group>
-                    <Form.Label as='legend'>Select Method</Form.Label>
-                    <Col>
-                    <Form.Check
-                            type='checkbox'
-                            label='PayPal'
-                            value="Paypal"
-                            id='paypal'
-                            name = 'paymentMethod'
-                            
-                            onChange={(f) => setPaymentMethod(f.target.value)}
-                        >
-                          </Form.Check>
-                          <Form.Check
-                            type='checkbox'
-                            label='Credit Card'
-                            value="Credit Card"
-                            id='creditcard'
-                            name = 'paymentMethod1'
-                            onChange={(f) => setPaymentMethod(f.target.value)}
-                        ></Form.Check>
-                <Button type='submit' variant='primary'>
-                    Continue
-                </Button>
-
-                    </Col>
-                </Form.Group>
-                </Form>
-          ////
             
-            <Row>
-                <Col md={8}>
-                    <ListGroup variant='flush'>
-                        <ListGroup.Item>
-                            <h2>Shipping</h2>
-                            <p>
-                                <strong>Shipping: </strong>
-                                {cart.shippingAddress.address}, {cart.shippingAddress.city}
-                                {'  '}
-                                {cart.shippingAddress.postalCode},
-                                {'  '}
-                                {cart.shippingAddress.country},
-                            </p>
 
-                        </ListGroup.Item>
-                        
-                        <ListGroup.Item>
-                            <h2>Payment Method</h2>
-
-                            <p>
-                                <strong>Method: </strong>
-                                {cart.paymentMethod}
-
-                            </p>
-
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                            <h2>Order Items</h2>
-                            {cart.cartItems.length === 0 ? <Message>
-                                Your cart is empty
-                            </Message> : (
-                                <ListGroup variant='flush'>
-                                    {cart.cartItems.map((item,index) => (
-                                        <ListGroup.Item key={index}>
-                                            <Row>
-                                                <Col md={1}>
-                                                    <Image src={item.image} alt={item.name} fluid rounded/>
-                                                </Col>
-
-                                                <Col>
-                                                    <Link to={`/product/${item.product}`}>{item.name}</Link>
-                                                </Col>
-
-                                                <Col md={4}>
-                                                    {item.qty} X ${item.price} = ${(item.qty * item.price).toFixed(2)}
-                                                </Col>
-                                            </Row>
-                                        </ListGroup.Item>
-                                    ))}
-                                </ListGroup>
-                            )}
-
-                        </ListGroup.Item>
-
-                    </ListGroup>
-                </Col>
-
-                <Col md={4}>
-                    <Card>
-                        <ListGroup variant='flush'>
-                            <ListGroup.Item>
-                                <h2>Order Summary</h2>
-                            </ListGroup.Item>
-                             
-                        </ListGroup>
-
-                        <ListGroup.Item>
-                             <Row>
-                                 <Col>Item:</Col>
-                                 <Col>$ {cart.itemsPrice}</Col>
-                             </Row>
-                        </ListGroup.Item>
-                        
-                        <ListGroup.Item>
-                             <Row>
-                                 <Col>Shpping:</Col>
-                                 <Col>$ {cart.shippingPrice}</Col>
-                             </Row>
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                             <Row>
-                                 <Col>Tax:</Col>
-                                 <Col>$ {cart.taxPrice}</Col>
-                             </Row>
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                             <Row>
-                                 <Col>Total:</Col>
-                                 <Col>$ {cart.totalPrice}</Col>
-                             </Row>
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                            {error &&<Message variant='danger'>{error}</Message>}
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                            <Button
-                                type='button'
-                                className='btn-block'
-                                disabled={cart.cartItems === 0}
-                                onClick={placeOrder}
-                            >
-                                Place Order
-                            </Button>
-                        </ListGroup.Item>
-
-                    </Card>
-                </Col>
-            </Row>
         </div>
     )
 }
