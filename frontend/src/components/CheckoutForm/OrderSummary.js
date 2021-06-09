@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Form,Button, Row, Col, ListGroup,Image, Card } from 'react-bootstrap'
-
+import { Form, Row, Col, ListGroup,Image, Card } from 'react-bootstrap'
+import {  Divider,ListItemText,List, ListItem,InputLabel, Select, MenuItem, Button, Grid, Typography,ButtonBase } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import { createOrder } from '../../actions/orderActions'
 import Message from '../../components/Message'
+import { makeStyles } from '@material-ui/core/styles';
 
 const OrderSummary = () => {
 
@@ -30,67 +31,50 @@ const OrderSummary = () => {
         }))
 
     }
+
+    const classes = useStyles();
     return (
         <div>
-                        <Row>
-                <Col md={8}>
-                    <ListGroup variant='flush'>
-                        <ListGroup.Item>
-                            <h2>Shipping</h2>
-                            <p>
-                                <strong>Shipping: </strong>
-                                {cart.shippingAddress.address}, {cart.shippingAddress.city}
-                                {'  '}
-                                {cart.shippingAddress.postalCode},
-                                {'  '}
-                                {cart.shippingAddress.country},
-                            </p>
-
-                        </ListGroup.Item>
+                    <List variant='flush'>
+                        <ListItem>
+                        <ListItemText primary="Shipping Address" secondary={` ,${cart.shippingAddress.address},${cart.shippingAddress.city},${cart.shippingAddress.country},${cart.shippingAddress.postalCode}`} />
+                        </ListItem>
+                        <ListItem>
+                        <ListItemText primary="Shipping Method" secondary={`Shipping Method: ${cart.paymentMethod}`} />
+                        </ListItem>
+                        <Divider />
+                        <Typography>Order Items</Typography>
                         
-                        <ListGroup.Item>
-                            <h2>Payment Method</h2>
-
-                            <p>
-                                <strong>Method: </strong>
-                                {cart.paymentMethod}
-
-                            </p>
-
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                            <h2>Order Items</h2>
                             {cart.cartItems.length === 0 ? <Message>
                                 Your cart is empty
                             </Message> : (
-                                <ListGroup variant='flush'>
+                                <List>
                                     {cart.cartItems.map((item,index) => (
-                                        <ListGroup.Item key={index}>
-                                            <Row>
-                                                <Col md={1}>
-                                                    <Image src={item.image} alt={item.name} fluid rounded/>
-                                                </Col>
-
-                                                <Col>
-                                                    <Link to={`/product/${item.product}`}>{item.name}</Link>
-                                                </Col>
-
-                                                <Col md={4}>
-                                                    {item.qty} X ${item.price} = ${(item.qty * item.price).toFixed(2)}
-                                                </Col>
-                                            </Row>
-                                        </ListGroup.Item>
+                                    <Grid container spacing={5}>
+                                        <Grid item xs={2} >
+                                            <ButtonBase className={classes.image}>
+                                                <img src={item.image} className={classes.image} alt={item.name} fluid rounded/>
+                                            </ButtonBase>
+                                        </Grid>
+                                        
+                                        <Grid item xs={6}>
+                                        <Link to={`/product/${item.product}`}>
+                                        {item.name}
+                                        <br/>
+                                        {`quantity:${item.qty}`}   
+                                        </Link>
+                                        </Grid>
+                                        
+                                        <Grid item  xs={4}>
+                                            ${(item.qty * item.price).toFixed(2)}
+                                        </Grid>  
+                                    </Grid>    
                                     ))}
-                                </ListGroup>
+                                    
+                                </List>
                             )}
-
-                        </ListGroup.Item>
-
-                    </ListGroup>
-                </Col>
-
-            </Row>
+                    </List>
+                    <Divider /><br/>
              <Col md={4}>
                     <Card>
                         <ListGroup variant='flush'>
@@ -150,3 +134,24 @@ const OrderSummary = () => {
 }
 
 export default OrderSummary
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      margin: 'auto',
+      maxWidth: 500,
+    },
+    image: {
+      width: 78,
+      height: 78,
+    },
+    img: {
+      margin: 'auto',
+      display: 'block',
+      maxWidth: '100%',
+      maxHeight: '100%',
+    },
+  }));
