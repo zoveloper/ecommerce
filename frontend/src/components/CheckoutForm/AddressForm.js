@@ -4,8 +4,9 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux'
 import FormInput from './CustomTextField';
 import { saveShippingAddress,savePaymentMethod } from '../../actions/cartActions'
+import { Link } from 'react-router-dom';
 
-const AddressForm = () => {
+const AddressForm = ({next}) => {
   const dispatch = useDispatch()
   const cart = useSelector(state => state.cart)
   const {shippingAddress} = cart
@@ -21,10 +22,11 @@ const AddressForm = () => {
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
   const [country, setCountry] = useState(shippingAddress.country)
   const methods = useForm()
+
   const submitHandler = (e) => {
       e.preventDefault()
       dispatch(saveShippingAddress({firstName,lastName,email,phone,address1, address, city, postalCode, country}))
- 
+      next()
   }
 
   return (
@@ -126,10 +128,12 @@ const AddressForm = () => {
 
               </Select>
             </Grid>
-            </Grid>
-            <Button type='submit' variant='primary'>
-              Continue
-            </Button>
+          </Grid>
+          <br/>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Button component={Link} variant="outlined" to="/cart">Back to Cart</Button>
+            <Button type="submit" variant="contained" color="primary">Next</Button>
+          </div>
           </form>
 
           </FormProvider>

@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Form, Row, Col, ListGroup,Image, Card } from 'react-bootstrap'
 import {  Divider,ListItemText,List, ListItem,InputLabel, Select, MenuItem, Button, Grid, Typography,ButtonBase } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import { createOrder } from '../../actions/orderActions'
@@ -49,11 +48,11 @@ const OrderSummary = () => {
                                 Your cart is empty
                             </Message> : (
                                 <List>
-                                    {cart.cartItems.map((item,index) => (
-                                    <Grid container spacing={5}>
+                                    {cart.cartItems.map((item,_id) => (
+                                    <Grid key={_id} container spacing={5}>
                                         <Grid item xs={2} >
                                             <ButtonBase className={classes.image}>
-                                                <img src={item.image} className={classes.image} alt={item.name} fluid rounded/>
+                                                <img src={item.image} className={classes.image} alt={item.name} />
                                             </ButtonBase>
                                         </Grid>
                                         
@@ -76,8 +75,6 @@ const OrderSummary = () => {
                     </List>
                     <Divider /><br/>
 
-
-                    //
              <Typography variant="h6" gutterBottom>Order summary</Typography>
              <List disablePadding>
                 <ListItem style={{ padding: '10px 0' }}>

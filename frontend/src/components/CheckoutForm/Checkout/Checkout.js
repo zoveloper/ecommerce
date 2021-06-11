@@ -1,17 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import { Form, Row, Col, ListGroup,Image, Card } from 'react-bootstrap'
 import { CssBaseline, Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import CheckoutSteps from '../../../components/CheckoutSteps'
 import { createOrder } from '../../../actions/orderActions'
 import { saveShippingAddress,savePaymentMethod } from '../../../actions/cartActions'
 
 import { ORDER_CREATE_RESET } from '../../../constants/orderConstants'
-import Message from '../../../components/Message'
-
-import FormInput from '../CustomTextField';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import AddressForm from '../AddressForm'
 import PaymentForm from '../PaymentForm'
 import useStyles from './styles';
@@ -20,6 +15,7 @@ const steps = ['Shipping address', 'Payment details'];
 
 const Checkout = ({history}) => {
     const [activeStep, setActiveStep] = useState(0);
+    
     const classes = useStyles();
     const orderCreate = useSelector(state => state.orderCreate)
     const {order, error, success} = orderCreate
@@ -27,7 +23,7 @@ const Checkout = ({history}) => {
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cart)
 
-
+    console.log(setActiveStep)
 
     useEffect(() =>{
         if(success){
@@ -49,13 +45,18 @@ const Checkout = ({history}) => {
 
     }
 
-    const {shippingAddress} = cart
+    const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
+  const {shippingAddress} = cart
+  const next =()=>{
+    nextStep()
+  }
     
   const methods = useForm();
-  const Form = () => (activeStep === 1
-    ? <AddressForm />
-    : <PaymentForm  />);
+  const Form = () => (activeStep === 0
+    ? <AddressForm next={next}/>
+    : <PaymentForm backStep={backStep}/>);
   let Confirmation = () => (order.customer ? (
     <>
       <div>
@@ -73,10 +74,6 @@ const Checkout = ({history}) => {
   ));
 
     return (
-        <div>
-          
-            //  
-          
           <>
       <CssBaseline />
       <div className={classes.toolbar} />
@@ -94,12 +91,7 @@ const Checkout = ({history}) => {
         </Paper>
       </main>
     </>
-          ////
 
-          ////
-            
-
-        </div>
     )
 }
 

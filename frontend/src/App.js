@@ -14,6 +14,7 @@ import WorkScreen from "./screens/WorkScreen";
 import WorkDetailScreen from "./screens/WorkDetailScreen";
 import CartScreen from "./screens/CartScreen";
 import CheckoutScreen from "./screens/CheckoutScreen";
+import Checkout from "./components/CheckoutForm/Checkout/Checkout";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -58,7 +59,7 @@ const App = () => {
         <Route  path="/about" component={AboutScreen} />
         <Route  path="/product/:id" component={ProductScreen} />
         <Route  path="/cart/:id?" component={CartScreen} />
-        <Route  path="/checkout" component={CheckoutScreen} />
+        <Route  path="/checkout" component={Checkout} />
       </div>
     </Router>
   );
