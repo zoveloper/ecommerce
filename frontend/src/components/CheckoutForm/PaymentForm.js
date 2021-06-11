@@ -4,7 +4,7 @@ import { Typography, Button, Divider } from '@material-ui/core'
 import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe('pk_test_51J0sRQC8Bn56uIKtIM04vghALFYRHOy5uJkfY9fnWTDh0K7PWZLx0ANz0TrYd0tYPH7HHEy6Bhw715ok9U9iiGuv006DbQPpwu')
+const stripePromise = loadStripe('process.env.REACT_APP_STRIPE_PUBLIC_KEY')
 
 function PaymentForm({backStep}) {
 
