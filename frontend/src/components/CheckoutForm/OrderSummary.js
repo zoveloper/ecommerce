@@ -75,48 +75,40 @@ const OrderSummary = () => {
                             )}
                     </List>
                     <Divider /><br/>
-             <Col md={4}>
-                    <Card>
-                        <ListGroup variant='flush'>
-                            <ListGroup.Item>
-                                <h2>Order Summary</h2>
-                            </ListGroup.Item>
-                             
-                        </ListGroup>
 
-                        <ListGroup.Item>
-                             <Row>
-                                 <Col>Item:</Col>
-                                 <Col>$ {cart.itemsPrice}</Col>
-                             </Row>
-                        </ListGroup.Item>
-                        
-                        <ListGroup.Item>
-                             <Row>
-                                 <Col>Shpping:</Col>
-                                 <Col>$ {cart.shippingPrice}</Col>
-                             </Row>
-                        </ListGroup.Item>
 
-                        <ListGroup.Item>
-                             <Row>
-                                 <Col>Tax:</Col>
-                                 <Col>$ {cart.taxPrice}</Col>
-                             </Row>
-                        </ListGroup.Item>
+                    //
+             <Typography variant="h6" gutterBottom>Order summary</Typography>
+             <List disablePadding>
+                <ListItem style={{ padding: '10px 0' }}>
+                    <ListItemText primary="Item"/>
+                    <Typography variant="subtitle1" style={{ fontWeight: 700 }}>
+                            $ {cart.itemsPrice}
+                    </Typography>
+                </ListItem>
+                <ListItem style={{ padding: '10px 0' }}>
+                    <ListItemText primary="Shpping:"/>
+                    <Typography variant="subtitle1" style={{ fontWeight: 700 }}>
+                            $ {cart.shippingPrice}
+                    </Typography>
+                </ListItem>
+                <ListItem style={{ padding: '10px 0' }}>
+                    <ListItemText primary="Tax:"/>
+                    <Typography variant="subtitle1" style={{ fontWeight: 700 }}>
+                             {cart.taxPrice}
+                    </Typography>
+                </ListItem>
+                <ListItem style={{ padding: '10px 0' }}>
+                    <ListItemText primary="Total:"/>
+                    <Typography variant="subtitle1" style={{ fontWeight: 700 }}>
+                    $ {cart.totalPrice}
+                    </Typography>
+                </ListItem>
 
-                        <ListGroup.Item>
-                             <Row>
-                                 <Col>Total:</Col>
-                                 <Col>$ {cart.totalPrice}</Col>
-                             </Row>
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
+                        <ListItem>
                             {error &&<Message variant='danger'>{error}</Message>}
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
+                        </ListItem>
+                        <ListItem>
                             <Button
                                 type='button'
                                 className='btn-block'
@@ -125,10 +117,9 @@ const OrderSummary = () => {
                             >
                                 Place Order
                             </Button>
-                        </ListGroup.Item>
+                        </ListItem>
+            </List>                            
 
-                    </Card>
-                </Col>
         </div>
     )
 }
