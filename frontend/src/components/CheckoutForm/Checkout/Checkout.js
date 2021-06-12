@@ -57,24 +57,13 @@ const Checkout = ({history}) => {
   const Form = () => (activeStep === 0
     ? <AddressForm next={next}/>
     : <PaymentForm backStep={backStep}/>);
-  let Confirmation = () => (order.customer ? (
-    <>
-      <div>
-        <Typography variant="h5">Thank you for your purchase, {order.customer.firstname} {order.customer.lastname}!</Typography>
-        <Divider className={classes.divider} />
-        <Typography variant="subtitle2">Order ref: {order.customer_reference}</Typography>
-      </div>
-      <br />
-      <Button component={Link} variant="outlined" type="button" to="/">Back to home</Button>
-    </>
-  ) : (
-    <div className={classes.spinner}>
-      <CircularProgress />
-    </div>
-  ));
+  const Confirmation = () => (
+    <div> confirmation</div>
+  )
+    
 
     return (
-          <>
+          <div>
       <CssBaseline />
       <div className={classes.toolbar} />
       <main className={classes.layout}>
@@ -90,7 +79,7 @@ const Checkout = ({history}) => {
           {activeStep === steps.length ? <Confirmation /> :   <Form />}
         </Paper>
       </main>
-    </>
+    </div>
 
     )
 }
