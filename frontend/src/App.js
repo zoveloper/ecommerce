@@ -13,7 +13,6 @@ import ProductScreen from "./screens/ProductScreen";
 import WorkScreen from "./screens/WorkScreen";
 import WorkDetailScreen from "./screens/WorkDetailScreen";
 import CartScreen from "./screens/CartScreen";
-import CheckoutScreen from "./screens/CheckoutScreen";
 import Checkout from "./components/CheckoutForm/Checkout/Checkout";
 
 
