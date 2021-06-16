@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import FormInput from './CustomTextField';
 import { saveShippingAddress,savePaymentMethod } from '../../actions/cartActions'
 import { Link } from 'react-router-dom';
+import { commerce } from '../../lib/ecommerce';
 
 const AddressForm = ({next}) => {
   const dispatch = useDispatch()
@@ -23,12 +24,21 @@ const AddressForm = ({next}) => {
   const [country, setCountry] = useState(shippingAddress.country)
   const methods = useForm()
 
+  const [shippingCountries, setShippingCountries] = useState([]);
+  const [shippingCountry, setShippingCountry] = useState('');
   const submitHandler = (e) => {
       e.preventDefault()
       dispatch(saveShippingAddress({firstName,lastName,email,phone,address1, address, city, postalCode, country}))
       next()
   }
-
+  const fetchShippingCountries = async () => {
+    const { countries } = await commerce.services.localeListShippingCountries();
+    setShippingCountries(countries);
+    setShippingCountry(Object.keys(countries)[0]);
+    
+  };
+  
+  
   return (
     <>
       <Typography variant="h6" gutterBottom>Shipping address</Typography>
@@ -99,7 +109,16 @@ const AddressForm = ({next}) => {
               onChange={(e) => setPostalCode(e.target.value)}
             />
              <Grid item xs={12} sm={6}>
-              <InputLabel>Shipping Country</InputLabel>
+             <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCountry(e.target.value)}>
+                {Object.entries(shippingCountries).map(([code, name]) => ({ id: code, label: name })).map((item) => (
+                  <MenuItem key={item.id} value={item.id}>
+                    {item.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <InputLabel>Shipping Subdivision</InputLabel>
               <Select  >
                 
                   <MenuItem >
@@ -109,17 +128,7 @@ const AddressForm = ({next}) => {
               </Select>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <InputLabel>Shipping Country</InputLabel>
-              <Select  >
-                
-                  <MenuItem >
-                    select
-                  </MenuItem>
-
-              </Select>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <InputLabel>Shipping Country</InputLabel>
+              <InputLabel>Shipping Options</InputLabel>
               <Select  >
                 
                   <MenuItem >
