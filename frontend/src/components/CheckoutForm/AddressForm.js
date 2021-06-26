@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { InputLabel, Select, MenuItem, Button, Grid, Typography } from '@material-ui/core';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,20 +24,13 @@ const AddressForm = ({next}) => {
   const [country, setCountry] = useState(shippingAddress.country)
   const methods = useForm()
 
-  const [shippingCountries, setShippingCountries] = useState([]);
-  const [shippingCountry, setShippingCountry] = useState('');
+
   const submitHandler = (e) => {
       e.preventDefault()
       dispatch(saveShippingAddress({firstName,lastName,email,phone,address1, address, city, postalCode, country}))
       next()
   }
-  const fetchShippingCountries = async () => {
-    const { countries } = await commerce.services.localeListShippingCountries();
-    setShippingCountries(countries);
-    setShippingCountry(Object.keys(countries)[0]);
-    
-  };
-  
+
   
   return (
     <>
@@ -102,41 +95,13 @@ const AddressForm = ({next}) => {
             />
             <FormInput 
               required
-              name="firstName"
+              name="country"
               type='text'
               placeholder='Enter postal code'
               value={postalCode ? postalCode : ''}
-              onChange={(e) => setPostalCode(e.target.value)}
+              onChange={(e) => setCountry(e.target.value)}
             />
-             <Grid item xs={12} sm={6}>
-             <Select value={shippingCountry} fullWidth onChange={(e) => setShippingCountry(e.target.value)}>
-                {Object.entries(shippingCountries).map(([code, name]) => ({ id: code, label: name })).map((item) => (
-                  <MenuItem key={item.id} value={item.id}>
-                    {item.label}
-                  </MenuItem>
-                ))}
-              </Select>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <InputLabel>Shipping Subdivision</InputLabel>
-              <Select  >
-                
-                  <MenuItem >
-                    select
-                  </MenuItem>
-
-              </Select>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <InputLabel>Shipping Options</InputLabel>
-              <Select  >
-                
-                  <MenuItem >
-                    select
-                  </MenuItem>
-
-              </Select>
-            </Grid>
+             
           </Grid>
           <br/>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>

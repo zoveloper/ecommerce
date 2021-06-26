@@ -4,8 +4,8 @@ import { Typography, Button, Divider } from '@material-ui/core'
 import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe('process.env.REACT_APP_STRIPE_PUBLIC_KEY')
-
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
+console.log(stripePromise)
 function PaymentForm({backStep}) {
 
   return (
@@ -25,7 +25,6 @@ function PaymentForm({backStep}) {
                 Pay now
               </Button>
               </div>
-
             </form>
           )}
         </ElementsConsumer>
