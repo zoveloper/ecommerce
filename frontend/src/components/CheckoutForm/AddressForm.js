@@ -35,7 +35,7 @@ const AddressForm = ({next}) => {
   return (
     <>
       <Typography variant="h6" gutterBottom>Shipping address</Typography>
-          <FormProvider {...methods}>
+          <FormProvider>
           <form onSubmit={submitHandler}>
             <Grid container spacing={3}>
             <FormInput 
@@ -92,6 +92,14 @@ const AddressForm = ({next}) => {
             placeholder='Enter city'
             value={city ? city : ''}
             onChange={(e) => setCity(e.target.value)}
+            />
+            <FormInput 
+              required
+              name="subdivision"
+              type='text'
+              placeholder='Enter postal code'
+              value={postalCode ? postalCode : ''}
+              onChange={(e) => setPostalCode(e.target.value)}
             />
             <FormInput 
               required
