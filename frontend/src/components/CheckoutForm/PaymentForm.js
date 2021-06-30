@@ -1,7 +1,8 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import OrderSummary from './OrderSummary'
 import { Typography, Button, Divider } from '@material-ui/core'
-import {CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import {CardElement, useStripe, useElements,Elements,ElementsConsumer } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { createOrder } from '../../actions/orderActions'
 
@@ -13,7 +14,10 @@ console.log(stripePromise)
 function PaymentForm({backStep}) {
   const stripe = useStripe()
   const elements = useElements()
+  const dispatch = useDispatch()
 
+  const cart = useSelector(state => state.cart)
+  const {shippingAddress} = cart
 
   const handleSubmit = async (event) => {
     // Block native form submission.
@@ -52,9 +56,6 @@ function PaymentForm({backStep}) {
   };
 
 }
-
-
-
 
   return (
     <>
