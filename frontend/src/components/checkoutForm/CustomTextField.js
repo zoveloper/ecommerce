@@ -27,4 +27,3 @@ function FormInput({ name,value, placeholder,type, required,onChange }) {
 }
 
 export default FormInput;
-
